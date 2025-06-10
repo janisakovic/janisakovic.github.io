@@ -1,6 +1,6 @@
 /* Themed colors */
 :root {
-  --primary-accent: #467fbf;
+  --primary-accent: #243688;
   --navbar-border-top: #294d76;
   --button-border: #336194;
   --link-focus: #2f5a89;
@@ -139,7 +139,7 @@ div.section {
   line-height: 80px;
   border-radius: 40px;
   border: solid 1px #fff;
-  font-size: 20px;
+  font-size: 30px;
 }
 .icon.icon-lg {
   font-size: 30px;
@@ -2160,6 +2160,7 @@ fieldset[disabled] .btn-template-primary.active {
   letter-spacing: 0.08em;
   font-weight: 300;
   font-size: 12px;
+  display: none;
 }
 .box-image-text.blog .author-category a {
   font-weight: 500;

@@ -1,6 +1,69 @@
 /* your styles go here */
 /* Example site test */
 
+:root {
+  --primary-accent: #243688;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.box-simple .icon {
+/*  color: #7CAD3D; */
+  border-color: #7CAD3D;
+}
+
+table {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.home-carousel .owl-theme .owl-controls .owl-page.active span {
+  background: #7CAD3D;
+}
+
+.home-carousel .owl-theme .owl-controls .owl-page:hover span {
+  background: #7CAD3D;
+}
+
+
+.home-carousel {
+  background: url('/img/carousel-background.jpg') center center repeat;
+  background-size: cover;
+}
+
+.bar.background-image-fixed-2 {
+  background: url('/img/fixed-scroll-background.jpg') center top no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.heading h1,
+.heading h2,
+.heading h3,
+.heading h4,
+.heading h5 {
+  border-bottom: solid 5px #7CAD3D;
+}
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+  color: #243688;
+}
+
+#blog-post #post-content img {
+    max-width: 60%;
+    max-height: 400px;
+    margin-top:15px;
+    margin-bottom: 15px;
+}
+
 .box-image-text .image {
     min-height: 190px;
     max-height: 190px;
@@ -13,4 +76,9 @@
 
 .box-simple {
     min-height: 230px;
+}
+
+.box-image-text.blog .author-category {
+
+  display: none;
 }

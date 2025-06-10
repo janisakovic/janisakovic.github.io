@@ -1,68 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>WindNext Energy</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on WindNext Energy</description>
+    <title>WindNext Energy - Modular wind turbines that unlock the next chapter of wind power generation</title>
+    <link>http://windnext-energy.com/</link>
+    <description>Recent content on WindNext Energy - Modular wind turbines that unlock the next chapter of wind power generation</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Aug 2021 21:29:20 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 May 2025 21:49:20 +0200</lastBuildDate>
+    <atom:link href="http://windnext-energy.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Categories Post</title>
-      <link>http://localhost:1313/blog/2021/08/01/categories-post/</link>
-      <pubDate>Sun, 01 Aug 2021 21:29:20 +0200</pubDate>
-      <guid>http://localhost:1313/blog/2021/08/01/categories-post/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m a post with multiple categories in the frontmatter:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;categories = [&amp;quot;programming&amp;quot;,&amp;quot;lorem&amp;quot;,&amp;quot;pseudo&amp;quot;]&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mauris nulla, vestibulum vel auctor sed, posuere eu lorem. Aliquam consequat augue ut accumsan mollis. Suspendisse malesuada sodales tincidunt. Vivamus sed erat ac augue bibendum porta sed id ipsum. Ut mollis mauris eget ligula sagittis cursus. Aliquam id pharetra tellus. Pellentesque sed tempus risus. Proin id hendrerit ante. Vestibulum vitae urna ut mauris ultricies dignissim. Ut ante turpis, tristique vitae sagittis quis, sagittis nec diam. Fusce pulvinar cursus porta. Vivamus maximus leo dolor, ut pellentesque lorem fringilla nec. Mauris faucibus turpis posuere sapien euismod, a ullamcorper mi maximus.&lt;/p&gt;</description>
+      <title>WindNext technology</title>
+      <link>http://windnext-energy.com/blog/2025/05/01/windnext-technology/</link>
+      <pubDate>Thu, 01 May 2025 21:49:20 +0200</pubDate>
+      <guid>http://windnext-energy.com/blog/2025/05/01/windnext-technology/</guid>
+      <description>A closer look into the technology behind WindNext</description>
     </item>
     <item>
-      <title>Linked post</title>
-      <link>http://localhost:1313/blog/2015/10/02/linked-post/</link>
-      <pubDate>Fri, 02 Oct 2015 21:49:20 +0200</pubDate>
-      <guid>http://localhost:1313/blog/2015/10/02/linked-post/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m a linked post in the menu. You can add other posts by adding the following line to the frontmatter:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;menu = &amp;quot;main&amp;quot;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mauris nulla, vestibulum vel auctor sed, posuere eu lorem. Aliquam consequat augue ut accumsan mollis. Suspendisse malesuada sodales tincidunt. Vivamus sed erat ac augue bibendum porta sed id ipsum. Ut mollis mauris eget ligula sagittis cursus. Aliquam id pharetra tellus. Pellentesque sed tempus risus. Proin id hendrerit ante. Vestibulum vitae urna ut mauris ultricies dignissim. Ut ante turpis, tristique vitae sagittis quis, sagittis nec diam. Fusce pulvinar cursus porta. Vivamus maximus leo dolor, ut pellentesque lorem fringilla nec. Mauris faucibus turpis posuere sapien euismod, a ullamcorper mi maximus.&lt;/p&gt;</description>
+      <title>Optimized for hills</title>
+      <link>http://windnext-energy.com/blog/2025/05/01/optimized-hills/</link>
+      <pubDate>Thu, 01 May 2025 21:49:10 +0200</pubDate>
+      <guid>http://windnext-energy.com/blog/2025/05/01/optimized-hills/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://windnext-energy.com/img/posts/turbines-on-hill.jpg&#34; alt=&#34;WindNext installation&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;hill-locations-are-still-untapped-but-need-better-technology&#34;&gt;Hill locations are still untapped, but need better technology&lt;/h3&gt;&#xA;&lt;p&gt;Hills have the best onshore wind potential to meet growind demand for wind power, but there are also challenges: often, there is no space for installation and transportation of large turbine parts is either expensive or simply impossible.&lt;/p&gt;&#xA;&lt;p&gt;With demand for wind power growing and legacy wind power technology reaching the limits of deployment potential, the time is ripe for a new technology that will enable future growth.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Go is for lovers</title>
-      <link>http://localhost:1313/blog/2015/09/17/go-is-for-lovers/</link>
-      <pubDate>Thu, 17 Sep 2015 13:47:08 +0200</pubDate>
-      <guid>http://localhost:1313/blog/2015/09/17/go-is-for-lovers/</guid>
-      <description>&lt;p&gt;Hugo uses the excellent &lt;a href=&#34;https://go.dev/&#34;&gt;go&lt;/a&gt; &lt;a href=&#34;https://pkg.go.dev/html/template&#34;&gt;html/template&lt;/a&gt; library for&#xA;its template engine. It is an extremely lightweight engine that provides a very&#xA;small amount of logic. In our experience that it is just the right amount of&#xA;logic to be able to create a good static website. If you have used other&#xA;template systems from different languages or frameworks you will find a lot of&#xA;similarities in go templates.&lt;/p&gt;&#xA;&lt;p&gt;This document is a brief primer on using go templates. The &lt;a href=&#34;https://pkg.go.dev/html/template&#34;&gt;go docs&lt;/a&gt;&#xA;provide more details.&lt;/p&gt;</description>
+      <title>Safe for birds</title>
+      <link>http://windnext-energy.com/blog/2025/05/01/safe-for-birds/</link>
+      <pubDate>Thu, 01 May 2025 21:49:00 +0200</pubDate>
+      <guid>http://windnext-energy.com/blog/2025/05/01/safe-for-birds/</guid>
+      <description>WindNext turbine design make it the safest wind turbine for birds and bats</description>
     </item>
     <item>
-      <title>Hugo is for lovers</title>
-      <link>http://localhost:1313/blog/2015/08/03/hugo-is-for-lovers/</link>
-      <pubDate>Mon, 03 Aug 2015 13:39:46 +0200</pubDate>
-      <guid>http://localhost:1313/blog/2015/08/03/hugo-is-for-lovers/</guid>
-      <description>This is the summary Goto &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;hugo releases&lt;/a&gt; and download the appropriate version for your os and architecture. Save it somewhere specific as we will be using it in the next step. More complete instructions are available at &lt;a href=&#34;http://localhost:1313/overview/installing/&#34;&gt;installing hugo&lt;/a&gt;</description>
+      <title>Zero infrasound</title>
+      <link>http://windnext-energy.com/blog/2025/05/01/no-infrasound/</link>
+      <pubDate>Thu, 01 May 2025 21:47:20 +0200</pubDate>
+      <guid>http://windnext-energy.com/blog/2025/05/01/no-infrasound/</guid>
+      <description>&lt;h3 id=&#34;infrasound-and-its-effects-on-humans-and-animals&#34;&gt;Infrasound and its effects on humans and animals&lt;/h3&gt;&#xA;&lt;p&gt;Infrasound is sound with very long wavelengths, a planar wave structure and outside the range of normal hearing for moderate sound pressure levels. The attenuation of infrasound is complex; it initially increases with distance from the source (becoming quieter), but it can decrease over still further distances so that it then gets louder. When it interacts with buildings, it can produce secondary structural vibrations that may be perceptible to the occupants. Infrasound from wind turbines is particularly annoying because the sound signature contains short, frequent episodes and it persists over extended periods, compared with other short-duration sources (such as trains). Most people can ‘tune out’ repeated sounds but in some people the central nervous system becomes sensitized and they suffer the symptoms of chronic noise stress such as anxiety, depression, cognitive dysfunction and disrupted sleep (&lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S2210670722006126&#34;&gt;source: Wind turbine infrasound: Phenomenology and effect on people, ScienceDirect&lt;/a&gt;).&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Creating a new theme</title>
-      <link>http://localhost:1313/blog/2015/06/24/creating-a-new-theme/</link>
-      <pubDate>Wed, 24 Jun 2015 13:50:46 +0200</pubDate>
-      <guid>http://localhost:1313/blog/2015/06/24/creating-a-new-theme/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll start with creating a new site with a very basic template. Then we&amp;rsquo;ll add in a few pages and posts. With small variations on that, you will be able to create many different types of web sites.&lt;/p&gt;</description>
+      <title>3x ROI - our pilot project in-depth</title>
+      <link>http://windnext-energy.com/blog/2025/05/01/pilot-example/</link>
+      <pubDate>Thu, 01 May 2025 21:40:20 +0200</pubDate>
+      <guid>http://windnext-energy.com/blog/2025/05/01/pilot-example/</guid>
+      <description>&lt;h3 id=&#34;current-technology&#34;&gt;Current technology&lt;/h3&gt;&#xA;&lt;p&gt;Modern wind turbines have over 8,000 parts and blades as long as 70 meters. The rise in turbine size also increases stress and load on the structure. All of this leads to the projected life span of 20 years. After that, the teardown is costly and a lot of the parts, like the blades, are challenging to recycle.&lt;/p&gt;&#xA;&lt;h3 id=&#34;windnext-approach&#34;&gt;WindNext approach&lt;/h3&gt;&#xA;&lt;p&gt;Due to their smaller size, WindNext modules are by definition less efficient. To make economic sense, this lower efficiency had to be addressed. Our designers worked hard to deliver a solution that makes up for lower efficiency by extending the lifetime of the module by up to 3x to 60 years.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact</title>
-      <link>http://localhost:1313/contact/</link>
+      <link>http://windnext-energy.com/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/contact/</guid>
-      <description>&lt;h1 id=&#34;we-are-here-to-help-you&#34;&gt;We are here to help you&lt;/h1&gt;&#xA;&lt;p&gt;Are you curious about something? Do you have some kind of problem with our products? As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built gay party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.&lt;/p&gt;&#xA;&lt;p&gt;Please feel free to contact us, our customer service center is working for you 24/7.&lt;/p&gt;</description>
+      <guid>http://windnext-energy.com/contact/</guid>
+      <description>&lt;h1 id=&#34;interested-in-windnext&#34;&gt;Interested in WindNext?&lt;/h1&gt;&#xA;&lt;p&gt;Email to info (at) windnext-energy.com to get in touch!&lt;/p&gt;</description>
     </item>
     <item>
       <title>FAQ</title>
-      <link>http://localhost:1313/faq/</link>
+      <link>http://windnext-energy.com/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/faq/</guid>
+      <guid>http://windnext-energy.com/faq/</guid>
       <description>&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-what-to-do-if-i-have-still-not-received-the-order&#34;&gt;1. WHAT TO DO IF I HAVE STILL NOT RECEIVED THE ORDER?&lt;/h2&gt;&#xA;&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Migrate from Jekyll</title>
-      <link>http://localhost:1313/blog/1/01/01/migrate-from-jekyll/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/1/01/01/migrate-from-jekyll/</guid>
-      <description>&lt;h2 id=&#34;move-static-content-to-static&#34;&gt;Move static content to &lt;code&gt;static&lt;/code&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Jekyll has a rule that any directory not starting with &lt;code&gt;_&lt;/code&gt; will be copied as-is to the &lt;code&gt;_site&lt;/code&gt; output. Hugo keeps all static content under &lt;code&gt;static&lt;/code&gt;. You should therefore move it all there.&#xA;With Jekyll, something that looked like&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;▾ &amp;lt;root&amp;gt;/&#xA;    ▾ images/&#xA;        logo.png&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;should become&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;▾ &amp;lt;root&amp;gt;/&#xA;    ▾ static/&#xA;        ▾ images/&#xA;            logo.png&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as &lt;code&gt;CNAME&lt;/code&gt;) to be moved to &lt;code&gt;static&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
