@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  /* Wind + sustainability palette */
+  --color-brand-50:  #eef7f4;
+  --color-brand-100: #d3ece4;
+  --color-brand-200: #a8d8c9;
+  --color-brand-500: #1f8a70;
+  --color-brand-600: #166b57;
+  --color-brand-700: #0f5041;
+  --color-brand-900: #06231d;
+  --color-ink:       #0d1b17;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 1rem;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Offset anchored sections so the sticky header doesn't cover them */
+  [id] { scroll-margin-top: 5rem; }
+}
