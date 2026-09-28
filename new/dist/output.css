@@ -56,12 +56,12 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --color-brand-50: #eef7f4;
-    --color-brand-100: #d3ece4;
-    --color-brand-200: #a8d8c9;
-    --color-brand-600: #166b57;
-    --color-brand-700: #0f5041;
-    --color-brand-900: #06231d;
+    --color-brand-50: #f5f9ed;
+    --color-brand-100: #e7f2d4;
+    --color-brand-200: #cde4a8;
+    --color-brand-600: #638a31;
+    --color-brand-700: #4c6a26;
+    --color-brand-900: #2a3c16;
     --color-ink: #0d1b17;
   }
 }

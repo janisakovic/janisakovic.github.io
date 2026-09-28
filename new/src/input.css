@@ -1,18 +1,37 @@
 @import "tailwindcss";
 
+
+
 @theme {
-  /* Wind + sustainability palette */
-  --color-brand-50:  #eef7f4;
-  --color-brand-100: #d3ece4;
-  --color-brand-200: #a8d8c9;
-  --color-brand-500: #1f8a70;
-  --color-brand-600: #166b57;
-  --color-brand-700: #0f5041;
-  --color-brand-900: #06231d;
-  --color-ink:       #0d1b17;
+  /* Primary — WindNext green */
+  --color-brand-50:  #f5f9ed;
+  --color-brand-100: #e7f2d4;
+  --color-brand-200: #cde4a8;
+  --color-brand-300: #aed279;
+  --color-brand-400: #94bf54;
+  --color-brand-500: #7cad3d;
+  --color-brand-600: #638a31;
+  --color-brand-700: #4c6a26;
+  --color-brand-800: #3a521e;
+  --color-brand-900: #2a3c16;
+  --color-brand-950: #152008;
+
+  /* Accent — WindNext navy */
+  --color-accent-50:  #eef0fb;
+  --color-accent-100: #dae0f6;
+  --color-accent-200: #b6c2ec;
+  --color-accent-300: #8a9de0;
+  --color-accent-400: #566fd0;
+  --color-accent-500: #3d55bb;
+  --color-accent-600: #243688;
+  --color-accent-700: #1d2b6e;
+  --color-accent-800: #172257;
+  --color-accent-900: #101841;
+  --color-accent-950: #0a0f28;
+
+  --color-ink: #0d1b17;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-
   --radius-card: 1rem;
 }
 
