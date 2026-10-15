@@ -80,13 +80,15 @@ mark.tbc{background:var(--tbc-bg);color:var(--tbc);font-size:.8em;font-weight:60
 .nav a{color:#fff;text-decoration:none;font-size:15px;font-weight:500;opacity:.92;white-space:nowrap}
 @media (max-width:1320px){.nav{gap:22px}}
 @media (max-width:1240px){.nav{gap:16px}.nav a{font-size:14px}}
-@media (min-width:981px) and (max-width:1140px){.site-header .btn{display:none}}
+@media (min-width:981px) and (max-width:1300px){.site-header .cta-more{display:none}}
 .nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--green);text-decoration-thickness:2px}
 .is-scrolled .nav a{color:var(--navy)}
 .menu-btn{display:none;margin-left:auto;background:none;border:0;color:#fff;padding:8px;cursor:pointer}
 .menu-btn .ico{width:28px;height:28px;color:currentColor}
 .is-scrolled .menu-btn{color:var(--navy)}
 @media (max-width:1100px){.nav{gap:20px}.nav a{font-size:14px}}
+@media (min-width:981px) and (max-width:1140px){.site-header .container{gap:16px}.nav{gap:13px}.nav a{font-size:13.5px}.site-header .btn--sm{padding-left:14px;padding-right:14px;font-size:14px}}
+@media (min-width:981px) and (max-width:1080px){.site-header .logo img{height:22px}.nav{gap:11px}}
 @media (max-width:980px){
   .nav{display:none;position:absolute;top:var(--header-h);left:0;right:0;flex-direction:column;gap:0;background:#fff;padding:8px var(--pad) 20px;box-shadow:0 12px 24px rgba(20,27,71,.12)}
   .nav.open{display:flex}.nav a{color:var(--navy);padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}
@@ -195,7 +197,7 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .col-card h3{display:flex;align-items:center;gap:12px;font-size:22px}
 .col-card h3 .ico{width:32px;height:32px}
 .col-card p{margin:0;font-size:17px}
-.badge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 14px 8px 10px;border-radius:999px;background:var(--green-50);border:1px solid #CFE5B0;color:var(--green-800);font-size:14px;font-weight:700}
+.badge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 14px 8px 10px;border-radius:20px;background:var(--green-50);border:1px solid #CFE5B0;color:var(--green-800);font-size:14px;font-weight:700;line-height:1.35}
 .badge .ico{width:20px;height:20px;color:var(--green-700)}
 .ph-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ph-pair .ph{min-height:170px}
@@ -416,7 +418,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <nav class="nav" id="nav" aria-label="Main">
       <a href="index.html#how">How it works</a><a href="index.html#repowering">Repowering</a><a href="map.html">Map</a><a href="index.html#birds">Birds and noise</a><a href="index.html#pilot">Pilot partners</a><a href="index.html#faq">FAQ</a><a href="index.html#contact">Contact</a>
     </nav>
-    <a class="btn btn--primary btn--sm" href="index.html#contact">Request a site check</a>
+    <a class="btn btn--primary btn--sm" href="map.html"><span class="btn__label">Check your wind farm<span class="cta-more">'s potential</span></span></a>
     <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </header>
