@@ -159,6 +159,9 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .tile--feature p{color:#E3E7F5;font-size:17px}
 .tile--feature .ico{width:52px;height:52px}
 .tile--feature .big{font-family:var(--font-head);font-weight:800;font-size:72px;line-height:1;color:var(--green);letter-spacing:-.03em}
+.tile__link{margin:16px 0 0}.tile__link a{display:inline-flex;align-items:center;gap:8px;color:var(--green-300);font-weight:700;font-size:16px;text-decoration:none}.tile__link a:hover{color:var(--green);text-decoration:underline;text-underline-offset:4px}.tile__link .ico{width:18px;height:18px}
+.tile--feature .tile__link a{color:var(--green)}
+.tile--feature .tile__link a:hover{color:var(--green-300)}
 /* Repowering */
 .rep__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:start}
 .frames{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(40px,5vw,56px)}
@@ -187,10 +190,25 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .numbers .footnote{color:#C9CFE6;margin-top:24px;max-width:900px}
 .market{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:40px;padding:20px 24px;border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);font-size:16px;color:#E3E7F5}
 .findfarm{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;margin-top:32px;padding:22px 24px;border-radius:var(--radius);background:rgba(255,255,255,.06);border:1px solid rgba(169,209,106,.45)}
-.findfarm p{margin:0;color:#E3E7F5;font-size:17px;max-width:680px}.findfarm strong{color:#fff}
+.findfarm p{margin:0;color:#E3E7F5;font-size:17px;max-width:720px}.findfarm strong{color:#fff}
 .prefill-note{font-size:13px;color:var(--green-800);margin:0}
 @media (max-width:520px){.findfarm .btn{width:100%}}
 .market b{color:var(--green-300);font-family:var(--font-head)}
+.yield{margin-top:40px;padding:clamp(22px,3vw,32px);border-radius:var(--radius);background:rgba(255,255,255,.06);border:1px solid rgba(169,209,106,.4)}
+.yield__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
+.yield__n{font-family:var(--font-head);font-weight:800;font-size:clamp(40px,4.2vw,56px);line-height:1;color:var(--green);letter-spacing:-.03em}
+.yield__u{font-size:18px;color:#fff;margin:10px 0 0;max-width:380px;line-height:1.4}
+.yield__meta{font-size:15px;color:#C9CFE6;margin:14px 0 0;max-width:420px;line-height:1.5}
+.yield__tag{display:inline-block;margin-top:4px;color:var(--green-300);font-weight:600;font-size:14px}
+.yield h3{font-size:15px;font-weight:700;color:var(--green-300);text-transform:uppercase;letter-spacing:.06em;margin:0 0 12px}
+.yield table{width:100%;border-collapse:collapse;font-size:15px}
+.yield th,.yield td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.14);text-align:left;vertical-align:top}
+.yield th{color:var(--green-300);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.yield td{color:#fff}
+.yield td:last-child{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.yield .footnote{margin-top:16px;max-width:none}
+@media (max-width:760px){.yield__grid{grid-template-columns:1fr}.yield td:last-child{white-space:normal}}
+@media (max-width:520px){.yield__n{font-size:36px}.yield th,.yield td{padding:8px 6px;font-size:14px}}
 /* Birds */
 .two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,4vw,56px)}
 .col-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:18px}
