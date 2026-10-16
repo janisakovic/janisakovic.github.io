@@ -169,6 +169,13 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .steps3 h3{font-size:19px;margin:6px 0 8px}
 .steps3 p{font-size:16px;color:var(--muted);margin:0}
 .steps3 .k{font-family:var(--font-head);font-weight:800;color:var(--green-700);font-size:14px;letter-spacing:.08em}
+.rep__facts{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px;margin-top:16px}
+.rep__fact{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,2.4vw,28px)}
+.rep__fact p{margin:0;font-size:16px}
+.rep__fact h3{margin:0 0 10px}
+.rep__fact .footnote{margin-top:12px;font-size:13px}
+.rep__fact--stat{border-top:3px solid var(--green)}
+.rep__fact .rep__num{font-family:var(--font-head);font-weight:800;font-size:clamp(40px,4.4vw,56px);line-height:1;color:var(--navy);margin:0 0 10px!important}
 .rep__foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;margin-top:28px}
 .rep__foot p{margin:0;max-width:760px;font-size:16px;color:var(--muted)}
 .rep__foot strong{color:var(--navy)}
@@ -337,6 +344,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   .tile--feature{grid-column:auto}
   .two-col,.why{grid-template-columns:1fr}
   .frames{grid-template-columns:1fr}
+  .rep__facts{grid-template-columns:1fr}
   .steps3{grid-template-columns:1fr}.steps3 > div{border-right:0;border-bottom:1px solid var(--line)}.steps3 > div:last-child{border-bottom:0}
   .vis-row{grid-template-columns:1fr}
   .fgrid,.checks{grid-template-columns:1fr}
