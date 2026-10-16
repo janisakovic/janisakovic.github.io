@@ -6,13 +6,13 @@
 <title>Find your wind farm | WindNext wind farm map</title>
 <meta name="description" content="Indicative extra MWh that WindNext rows could add on hill and ridge wind farms across Europe. Find your wind farm and request a site check.">
 <link rel="icon" href="assets/windnext-logo-stacked.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="assets/vendor/markercluster/MarkerCluster.css">
 <!--
-  WindNext wind farm map — DESIGN MOCKUP (Oct 2026). Not production code.
+  WindNext wind farm map (Oct 2026).
   Data: assets/windnext_public_sites.geojson (public dataset only). Built by src/build_map.py into assets/windnext_map_sites.js
   so the page also works when opened from disk (file://).
 -->
@@ -113,19 +113,11 @@ mark.tbc{background:var(--tbc-bg);color:var(--tbc);font-size:.8em;font-weight:60
 .trust li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);flex:0 0 auto}
 .hero__art{position:absolute;right:0;bottom:0;width:min(78vw,1180px);z-index:0}
 .hero__art svg{width:100%;height:auto}
-.ph-tag{position:absolute;right:24px;top:calc(var(--header-h) + 20px);z-index:3;max-width:360px;font-size:12px;line-height:1.45;padding:10px 12px;border-radius:8px;background:rgba(20,27,71,.75);border:1px dashed rgba(255,255,255,.45);color:#E3E7F5}
-.ph-tag strong{display:block;color:#fff;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:2px}
-/* Placeholders */
-.ph{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:8px;padding:24px;border:1.5px dashed #AEB6D6;border-radius:var(--radius);color:var(--muted);background:repeating-linear-gradient(135deg,#F4F6FB 0 12px,#EDF0F8 12px 24px);font-size:14px;line-height:1.45;min-height:200px}
-.ph .ico{color:#8A93BC;width:32px;height:32px}
-.ph__label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
-.ph__file{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--green-800);background:#fff;padding:2px 8px;border-radius:4px;border:1px solid var(--line)}
-.section--navy .ph{background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 12px,rgba(255,255,255,.08) 12px 24px);border-color:rgba(255,255,255,.35);color:#C9CFE6}
-.section--navy .ph__label{color:#fff}
 /* Figures */
 figure{margin:0}
 .figure{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(16px,2.4vw,32px)}
 figcaption{font-size:14px;color:var(--muted);margin-top:14px}
+.birds-fig{margin:0}.birds-fig img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff}.birds-fig figcaption{margin-top:10px}
 /* Problem */
 .problem__grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,72px);align-items:start}
 .problem__copy p{color:var(--ink)}
@@ -144,7 +136,9 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .step h3{margin-bottom:10px}
 .step p{font-size:16px;color:var(--muted);margin:0}
 .hiw__figs{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--gutter)}
-.ph-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);margin-top:var(--gutter)}
+.vis-row{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--gutter);margin-top:var(--gutter);align-items:start}
+.vis-strip{margin-top:var(--gutter)}
+.figure svg{display:block;width:100%;height:auto}
 .quote-band{margin-top:clamp(48px,6vw,80px);text-align:center;max-width:920px;margin-left:auto;margin-right:auto}
 .quote-band blockquote{margin:0;font-family:var(--font-head);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.3;color:var(--navy)}
 .qmark{font-family:Georgia,serif;font-size:80px;line-height:.6;color:var(--green);display:block;margin-bottom:12px}
@@ -217,8 +211,9 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .col-card p{margin:0;font-size:17px}
 .badge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 14px 8px 10px;border-radius:20px;background:var(--green-50);border:1px solid #CFE5B0;color:var(--green-800);font-size:14px;font-weight:700;line-height:1.35}
 .badge .ico{width:20px;height:20px;color:var(--green-700)}
-.ph-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ph-pair .ph{min-height:170px}
+.vis-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.vis-fig{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:8px;overflow:hidden}
+.vis-fig svg{display:block;width:100%;height:auto}
 .pull{margin:clamp(48px,5vw,72px) auto;max-width:960px;display:grid;grid-template-columns:auto 1fr;gap:24px}
 .pull .qmark{font-size:120px;margin:0}
 .pull blockquote{margin:0;font-family:var(--font-head);font-style:italic;font-weight:600;font-size:clamp(22px,2.2vw,30px);line-height:1.4;color:var(--navy)}
@@ -244,8 +239,6 @@ figcaption{font-size:14px;color:var(--muted);margin-top:14px}
 .checklist strong{color:#fff}
 .fit{background:#fff;color:var(--ink);border-radius:var(--radius);padding:clamp(28px,3vw,40px);box-shadow:0 20px 50px rgba(0,0,0,.25);position:sticky;top:calc(var(--header-h) + 24px)}
 .section--navy .fit h3{font-size:24px;margin-bottom:8px;color:var(--navy)}
-.section--navy .fit .ph{background:repeating-linear-gradient(135deg,#F4F6FB 0 12px,#EDF0F8 12px 24px);border-color:#AEB6D6;color:var(--muted)}
-.section--navy .fit .ph__label{color:var(--navy)}
 .pilot .fit p.muted{font-size:15px;color:var(--muted);margin:0}
 .fit ul{list-style:none;padding:0;margin:20px 0 28px;display:grid;gap:14px}
 .fit li{display:grid;grid-template-columns:24px 1fr;gap:12px;font-size:16px}
@@ -280,12 +273,16 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 .checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px;margin-top:10px}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500}
 .check input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--navy);flex:0 0 auto}
-.consent{font-size:14px;color:var(--muted);font-weight:400}
 .form__privacy{font-size:14px;line-height:1.5;color:var(--muted);margin:16px 0 0;max-width:640px}
 .form__foot{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:28px}
+.form__notice{flex-basis:100%;margin:0;font-size:14px;color:var(--muted)}.form__notice a{color:var(--navy);font-weight:600}
 .confirm{display:flex;gap:12px;align-items:flex-start;margin-top:24px;padding:16px 18px;border-radius:var(--radius-sm);background:var(--green-50);border:1px solid #CFE5B0;font-size:15px;color:var(--green-800)}
 .confirm .ico{width:22px;height:22px;color:var(--green-700);flex:0 0 auto}
 .confirm small{display:block;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.confirm[hidden]{display:none}
+.confirm--error{background:#FDF0EF;border-color:#F2C4BF;color:#8A2A1F}.confirm--error .ico{color:#B3261E}.confirm--error a{color:#8A2A1F;font-weight:600}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form{position:relative}.form button[aria-busy="true"]{opacity:.7;cursor:progress}
 .card{border-radius:var(--radius);padding:clamp(24px,3vw,36px);background:var(--navy);color:#fff}
 .card h3{color:#fff;font-size:22px;margin-bottom:6px}
 .card p{color:#E3E7F5;font-size:16px}
@@ -306,7 +303,6 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 .flinks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;font-size:15px}
 .footer__legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:#C9CFE6}
 .footer__legal nav{display:flex;gap:20px;flex-wrap:wrap}
-.mock-note{background:#141B47;color:#C9CFE6;font-size:12px;text-align:center;padding:10px var(--pad)}
 
 .n .u{font-size:.5em;letter-spacing:0;margin-left:.22em;font-weight:700}
 .only-mobile{display:none}
@@ -332,7 +328,6 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   .hero{min-height:0;padding-bottom:0}
   .hero::after{background:linear-gradient(180deg,var(--navy) 0%,rgba(40,53,131,.85) 55%,rgba(40,53,131,0) 80%)}
   .hero__art{position:relative;width:auto;margin:24px 0 0}
-  .ph-tag{position:relative;right:auto;top:auto;bottom:auto;margin:-8px var(--pad) 28px;max-width:none}
   .cards4,.steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
   .hiw__figs{grid-template-columns:1fr}
   .numgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -345,7 +340,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   .two-col,.why{grid-template-columns:1fr}
   .frames{grid-template-columns:1fr}
   .steps3{grid-template-columns:1fr}.steps3 > div{border-right:0;border-bottom:1px solid var(--line)}.steps3 > div:last-child{border-bottom:0}
-  .ph-row{grid-template-columns:1fr}
+  .vis-row{grid-template-columns:1fr}
   .fgrid,.checks{grid-template-columns:1fr}
   .flinks{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pull{grid-template-columns:1fr;gap:0}
@@ -359,14 +354,14 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   .numgrid .n{font-size:38px}
   .numgrid .l{font-size:14px}
   .hero__ctas .btn{width:100%}
-  .ph-pair{grid-template-columns:1fr}
+  .vis-pair{grid-template-columns:1fr}
   .logo img{height:22px}
   .tile--feature .big{font-size:60px}
 }
 
 /* ===== Map page ===== */
 [hidden]{display:none!important}
-.leaflet-tile-pane{filter:grayscale(.85) brightness(1.06) contrast(.92)}
+.leaflet-tile-pane{filter:saturate(.55) brightness(1.04) contrast(.95)}
 .tile-warn{position:absolute;z-index:800;left:12px;right:12px;bottom:28px;background:#fff;border:1px dashed #AEB6D6;border-radius:8px;padding:8px 12px;font-size:13px;color:var(--muted);box-shadow:var(--shadow)}
 .maphero{background:radial-gradient(120% 90% at 85% 10%,#33439c 0%,var(--navy) 45%,var(--navy-800) 100%);color:#fff;padding:calc(var(--header-h) + clamp(40px,5vw,72px)) 0 clamp(40px,5vw,64px)}
 .maphero .eyebrow{color:var(--green-300)}
@@ -539,7 +534,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <div class="below">
       <div class="note-caveat" role="note">
         <p><strong>About these numbers.</strong> Indicative desktop estimate from public wind and terrain data; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.</p>
-        <p>Households equivalent assumes 3.6 MWh of electricity per household per year (EU average per dwelling, ODYSSEE-MURE). It is shown only for calibrated estimates. Base map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service) and Global Wind Atlas data; see <a href="licenses.html">licences and credits</a> and <a href="terms.html">terms of use</a>.</p>
+        <p>Households equivalent assumes 3.6 MWh of electricity per household per year (EU average per dwelling, ODYSSEE-MURE). It is shown only for calibrated estimates. Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service) and Global Wind Atlas data; see <a href="licenses.html">licences and credits</a> and <a href="terms.html">terms of use</a>.</p>
       </div>
       <div class="notshown">
         <h3>Your wind farm isn't on the map?</h3>
@@ -562,14 +557,13 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
       </div>
       <div>
         <ul class="flinks">
-          <li><a href="index.html#how">How it works</a></li><li><a href="index.html#repowering">Repowering</a></li><li><a href="map.html">Wind farm map</a></li><li><a href="index.html#birds">Birds and noise</a></li><li><a href="index.html#pilot">Pilot partners</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#contact">Contact</a></li><li><a href="#">Brochure</a></li><li><a href="#">LinkedIn</a> <mark class="tbc">[to confirm: URL]</mark></li>
+          <li><a href="index.html#how">How it works</a></li><li><a href="index.html#repowering">Repowering</a></li><li><a href="map.html">Wind farm map</a></li><li><a href="index.html#birds">Birds and noise</a></li><li><a href="index.html#pilot">Pilot partners</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#contact">Contact</a></li><li><a href="mailto:info@windnext-energy.com?subject=WindNext%20hills%20brochure%20request">Brochure</a></li><li><a href="https://www.linkedin.com/company/windnext-energy/" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__legal"><span>© 2026 WindNext d.o.o.</span><nav aria-label="Legal"><a href="legal-notice.html">Legal notice</a><a href="privacy.html">Privacy policy</a><a href="cookies.html">Cookies</a><a href="terms.html">Terms of use</a><a href="licenses.html">Licences and credits</a><a href="accessibility.html">Accessibility</a></nav></div>
   </div>
 </footer>
-<div class="mock-note">Design mockup, Oct 2026 · Map data: public WindNext site list (assets/windnext_public_sites.geojson) · Indicative screening estimates · Form on the main page is non-functional</div>
 
 <script src="assets/vendor/leaflet/leaflet.js"></script>
 <script src="assets/vendor/markercluster/leaflet.markercluster.js"></script>
@@ -592,11 +586,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   var BOUNDS=L.latLngBounds([34,-25],[72,45]);
   var mobile=function(){return window.matchMedia('(max-width:980px)').matches;};
   var map=L.map('wn-map',{maxBounds:BOUNDS,maxBoundsViscosity:1,minZoom:mobile()?3:4,maxZoom:14,zoomSnap:.5,worldCopyJump:false,preferCanvas:true});
-  // OpenStreetMap standard tiles, desaturated with CSS to keep the brand palette calm. (CARTO basemaps now need an API key.)
-  // For production use a tile provider with an SLA (e.g. CARTO with key, MapTiler, Stadia); OSM's public servers are for light use only.
-  var tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,bounds:BOUNDS.pad(.2),
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-  var terr=0;tiles.on('tileerror',function(){if(++terr===4){var d=document.createElement('div');d.className='tile-warn';d.textContent='Base map tiles could not load. If you opened this file from disk, serve the folder over http (e.g. python3 -m http.server) and reload.';document.getElementById('wn-map').appendChild(d);}});
+  // MapTiler "Landscape" raster tiles: light, with hill shading for ridges, softened with CSS so the green markers stand out.
+  // Public key, restricted in the MapTiler account to windnext-energy.com (tiles are refused on other domains, incl. localhost).
+  var MAPTILER_KEY='A5tAEC2vScsq6ZtAX12B',MAPTILER_STYLE='landscape';
+  var tiles=L.tileLayer('https://api.maptiler.com/maps/'+MAPTILER_STYLE+'/{z}/{x}/{y}{r}.png?key='+MAPTILER_KEY,{tileSize:512,zoomOffset:-1,minZoom:1,maxZoom:19,bounds:BOUNDS.pad(.2),
+    attribution:'&copy; <a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
+  var terr=0;tiles.on('tileerror',function(){if(++terr===4){var d=document.createElement('div');d.className='tile-warn';d.textContent='Base map tiles could not load. The map key only works on windnext-energy.com; the wind farm markers still work.';document.getElementById('wn-map').appendChild(d);}});
   map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
   function cls(m){return m==null?'p':m<10000?'s':m<50000?'m':'l';}
   var STY={s:{r:6,fill:'#A9D16A'},m:{r:9,fill:'#78B22B'},l:{r:13,fill:'#4E7A16'}};
