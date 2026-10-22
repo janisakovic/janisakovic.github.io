@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on WindNext Energy - Modular wind turbines that unlock the next chapter of wind power generation</title>
-    <link>http://windnext-energy.com/old/tags/</link>
+    <link>https://windnext.energy/old/tags/</link>
     <description>Recent content in Tags on WindNext Energy - Modular wind turbines that unlock the next chapter of wind power generation</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 01 May 2025 21:49:20 +0200</lastBuildDate>
-    <atom:link href="http://windnext-energy.com/old/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://windnext.energy/old/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Environment</title>
-      <link>http://windnext-energy.com/old/tags/environment/</link>
+      <link>https://windnext.energy/old/tags/environment/</link>
       <pubDate>Thu, 01 May 2025 21:49:20 +0200</pubDate>
-      <guid>http://windnext-energy.com/old/tags/environment/</guid>
+      <guid>https://windnext.energy/old/tags/environment/</guid>
       <description></description>
     </item>
     <item>
       <title>Power</title>
-      <link>http://windnext-energy.com/old/tags/power/</link>
+      <link>https://windnext.energy/old/tags/power/</link>
       <pubDate>Thu, 01 May 2025 21:49:20 +0200</pubDate>
-      <guid>http://windnext-energy.com/old/tags/power/</guid>
+      <guid>https://windnext.energy/old/tags/power/</guid>
       <description></description>
     </item>
     <item>
       <title>Wind</title>
-      <link>http://windnext-energy.com/old/tags/wind/</link>
+      <link>https://windnext.energy/old/tags/wind/</link>
       <pubDate>Thu, 01 May 2025 21:49:20 +0200</pubDate>
-      <guid>http://windnext-energy.com/old/tags/wind/</guid>
+      <guid>https://windnext.energy/old/tags/wind/</guid>
       <description></description>
     </item>
     <item>
       <title>WindNext</title>
-      <link>http://windnext-energy.com/old/tags/windnext/</link>
+      <link>https://windnext.energy/old/tags/windnext/</link>
       <pubDate>Thu, 01 May 2025 21:49:20 +0200</pubDate>
-      <guid>http://windnext-energy.com/old/tags/windnext/</guid>
+      <guid>https://windnext.energy/old/tags/windnext/</guid>
       <description></description>
     </item>
     <item>
       <title>Birds</title>
-      <link>http://windnext-energy.com/old/tags/birds/</link>
+      <link>https://windnext.energy/old/tags/birds/</link>
       <pubDate>Thu, 01 May 2025 21:49:00 +0200</pubDate>
-      <guid>http://windnext-energy.com/old/tags/birds/</guid>
+      <guid>https://windnext.energy/old/tags/birds/</guid>
       <description></description>
     </item>
   </channel>

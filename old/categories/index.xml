@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on WindNext Energy - Modular wind turbines that unlock the next chapter of wind power generation</title>
-    <link>http://windnext-energy.com/old/categories/</link>
+    <link>https://windnext.energy/old/categories/</link>
     <description>Recent content in Categories on WindNext Energy - Modular wind turbines that unlock the next chapter of wind power generation</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 01 May 2025 21:49:20 +0200</lastBuildDate>
-    <atom:link href="http://windnext-energy.com/old/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://windnext.energy/old/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WindNext</title>
-      <link>http://windnext-energy.com/old/categories/windnext/</link>
+      <link>https://windnext.energy/old/categories/windnext/</link>
       <pubDate>Thu, 01 May 2025 21:49:20 +0200</pubDate>
-      <guid>http://windnext-energy.com/old/categories/windnext/</guid>
+      <guid>https://windnext.energy/old/categories/windnext/</guid>
       <description></description>
     </item>
   </channel>

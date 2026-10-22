@@ -558,7 +558,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
         <img src="assets/windnext-logo-horizontal-white.svg" alt="WindNext">
         <p class="tagline">The first wind turbine designed for hills.</p>
         <p>WindNext, vetrna energija, d.o.o., Prvomajska ulica 21, 5000 Nova Gorica, Slovenia</p>
-        <p><a href="mailto:info@windnext-energy.com">info@windnext-energy.com</a></p>
+        <p><a href="mailto:info@windnext.energy">info@windnext.energy</a></p>
       </div>
       <div>
         <ul class="flinks">
@@ -592,11 +592,11 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   var mobile=function(){return window.matchMedia('(max-width:980px)').matches;};
   var map=L.map('wn-map',{maxBounds:BOUNDS,maxBoundsViscosity:1,minZoom:mobile()?3:4,maxZoom:14,zoomSnap:.5,worldCopyJump:false,preferCanvas:true});
   // MapTiler "Landscape" raster tiles: light, with hill shading for ridges, softened with CSS so the green markers stand out.
-  // Public key, restricted in the MapTiler account to windnext-energy.com (tiles are refused on other domains, incl. localhost).
+  // Public key, restricted in the MapTiler account to windnext.energy (tiles are refused on other domains, incl. localhost).
   var MAPTILER_KEY='A5tAEC2vScsq6ZtAX12B',MAPTILER_STYLE='landscape';
   var tiles=L.tileLayer('https://api.maptiler.com/maps/'+MAPTILER_STYLE+'/{z}/{x}/{y}{r}.png?key='+MAPTILER_KEY,{tileSize:512,zoomOffset:-1,minZoom:1,maxZoom:19,bounds:BOUNDS.pad(.2),
     attribution:'&copy; <a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
-  var terr=0;tiles.on('tileerror',function(){if(++terr===4){var d=document.createElement('div');d.className='tile-warn';d.textContent='Base map tiles could not load. The map key only works on windnext-energy.com; the wind farm markers still work.';document.getElementById('wn-map').appendChild(d);}});
+  var terr=0;tiles.on('tileerror',function(){if(++terr===4){var d=document.createElement('div');d.className='tile-warn';d.textContent='Base map tiles could not load. The map key only works on windnext.energy; the wind farm markers still work.';document.getElementById('wn-map').appendChild(d);}});
   map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
   function cls(m){return m==null?'p':m<10000?'s':m<50000?'m':'l';}
   var STY={s:{r:6,fill:'#A9D16A'},m:{r:9,fill:'#78B22B'},l:{r:13,fill:'#4E7A16'}};
