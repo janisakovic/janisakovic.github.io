@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Find your wind farm | WindNext wind farm map</title>
-<meta name="description" content="Indicative extra MWh that WindNext rows could add on hill and ridge wind farms across Europe. Find your wind farm and request a site check.">
+<meta name="description" content="Modelled potential: the extra MWh that WindNext rows could add on hill and ridge wind farms across Europe. Find your wind farm and request a site check.">
 <link rel="icon" href="assets/windnext-logo-stacked.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -496,11 +496,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <div class="maphero__row">
       <div>
         <h1 id="h1">Find your wind farm. <span class="accent">See the extra MWh.</span></h1>
-        <p class="lead">Our modeling estimates how much energy WindNext turbine clusters could add beneath the blades of hill and ridge wind farms across Europe. Search for your farm, click it, and request a site check.</p>
+        <p class="lead">Our modeling estimates how much energy WindNext turbine clusters could add beneath the blades of hill and ridge wind farms across Europe (modelled potential). Search for your farm, click it, and request a site check.</p>
       </div>
       <ul class="mapstats" aria-label="Map summary">
-        <li><b id="st-sites">668</b><span>wind farms</span></li>
-        <li><b id="st-ctry">20</b><span>countries</span></li>
+        <li><b id="st-sites">322</b><span>wind farms</span></li>
+        <li><b id="st-ops">194</b><span>operators</span></li>
+        <li><b id="st-ctry">16</b><span>countries</span></li>
       </ul>
     </div>
   </div>
@@ -520,7 +521,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
       </div>
       <ul class="legend" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 10,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>10,000–50,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 50,000</li><li><span class="sw sw--cl">5</span>Group of farms</li></ul>
     </div>
-    <p class="count" id="count" aria-live="polite"><b>668</b> wind farms shown</p>
+    <p class="count" id="count" aria-live="polite"><b>322</b> wind farms shown</p>
     <div class="mapwrap">
       <div id="wn-map" role="region" aria-label="Map of wind farms in Europe. Use the search box to find a farm with the keyboard."></div>
       <aside class="panel" id="panel" aria-live="polite" aria-label="Wind farm details">
@@ -528,9 +529,9 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
         <div class="panel__in panel__empty" id="panel-empty">
           <div class="eyebrow">How to use the map</div>
           <h2>Select a wind farm</h2>
-          <p>Click a green dot or a numbered cluster, or search for your farm by name or country. Each farm shows the indicative additional energy WindNext rows could add on its ridge.</p>
+          <p>Click a green dot or a numbered cluster, or search for your farm by name or country. Each farm shows the modelled potential: the additional energy WindNext rows could add on its ridge.</p>
           <ul class="legend" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 10,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>10,000–50,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 50,000</li><li><span class="sw sw--cl">5</span>Group of farms</li></ul>
-          <p class="caveat">Indicative desktop estimate from public wind and terrain data; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.</p>
+          <p class="caveat">Modelled potential: a gross desktop estimate from public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.</p>
         </div>
         <div class="panel__in" id="panel-site" hidden></div>
       </aside>
@@ -538,7 +539,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <ul class="legend maplegend-mobile" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 10,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>10,000–50,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 50,000</li><li><span class="sw sw--cl">5</span>Group of farms</li></ul>
     <div class="below">
       <div class="note-caveat" role="note">
-        <p><strong>About these numbers.</strong> Indicative desktop estimate from public wind and terrain data; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.</p>
+        <p><strong>About these numbers.</strong> Modelled potential: a gross desktop estimate from public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.</p>
         <p>Households equivalent assumes 3.6 MWh of electricity per household per year (EU average per dwelling, ODYSSEE-MURE). It is shown only for calibrated estimates. Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service) and Global Wind Atlas data; see <a href="licenses.html">licences and credits</a> and <a href="terms.html">terms of use</a>.</p>
       </div>
       <div class="notshown">
@@ -557,7 +558,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
       <div>
         <img src="assets/windnext-logo-horizontal-white.svg" alt="WindNext">
         <p class="tagline">The first wind turbine designed for hills.</p>
-        <p>WindNext, vetrna energija, d.o.o., Prvomajska ulica 21, 5000 Nova Gorica, Slovenia</p>
+        <p>WindNext, vetrna energija, d.o.o., Nova Gorica, Slovenia</p>
         <p><a href="mailto:info@windnext.energy">info@windnext.energy</a></p>
       </div>
       <div>
@@ -585,10 +586,10 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 (function(){
   var ICON={arrow:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',pin:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5a7 7 0 0 1 14 0C19 14.7 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',ridge:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19 9 9l4 5 3-3 6 8z"/><path d="M2 21h20"/></svg>',bolt:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2 4 13h6l-1 9 7-11h-6z"/><path d="M19 3v5M16.5 5.5h5"/></svg>',person:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c1-4.5 4.2-6.5 8-6.5s7 2 8 6.5"/></svg>'};
   var HH=3.6; // MWh per household per year (EU average per dwelling, ODYSSEE-MURE)
-  var CAVEAT="Indicative desktop estimate from public wind and terrain data; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.";
+  var CAVEAT="Modelled potential: a gross desktop estimate from public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.";
   var D=window.WINDNEXT_MAP, S=D.sites; // [label,country,operator,mwh,rotors,section,lat,lon,unnamed]
   var fmt=new Intl.NumberFormat('en-GB');
-  var BOUNDS=L.latLngBounds([34,-25],[72,45]);
+  var BOUNDS=L.latLngBounds([27,-32],[72,45]);
   var mobile=function(){return window.matchMedia('(max-width:980px)').matches;};
   var map=L.map('wn-map',{maxBounds:BOUNDS,maxBoundsViscosity:1,minZoom:mobile()?3:4,maxZoom:14,zoomSnap:.5,worldCopyJump:false,preferCanvas:true});
   // MapTiler "Landscape" raster tiles: light, with hill shading for ridges, softened with CSS so the green markers stand out.
@@ -623,7 +624,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     if(s[8]) h+='<p class="sub">Name not published in the source data; labelled by region.</p>';
     h+='<dl class="meta"><dt>Country</dt><dd>'+esc(s[1])+'</dd>'+(s[2]?'<dt>Operator</dt><dd>'+esc(s[2])+'</dd>':'')+'</dl>';
     if(pend){h+='<div class="stat"><div class="k">Potential additional energy</div><div class="v v--pending">Estimate pending</div><p>We have not screened this farm yet. Request a site check and we will prepare its estimate.</p></div>';}
-    else{h+='<div class="stat"><div class="k">Potential additional energy</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Indicative, ±25-30%.</p></div>';}
+    else{h+='<div class="stat"><div class="k">Modelled potential, additional energy</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Indicative, ±25-30%. Gross, before wake, availability and electrical losses.</p></div>';}
     var f='';
     if(s[4]) f+='<li>'+ICON.ridge+'<span><b>'+fmt.format(s[4])+'</b> WindNext rotors along the crest (indicative layout)</span></li>';
     if(!pend && s[5]!=='notable_unscaled_only'){var hh=s[3]/HH,r=hh>=1000?Math.round(hh/100)*100:Math.round(hh/10)*10;
