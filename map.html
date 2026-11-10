@@ -643,9 +643,18 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     cur=i;var m=markers[i];m.setStyle(style(S[i],true));m.bringToFront();
     render(S[i]);openPanel();panel.scrollTop=0;
     function center(){ if(mobile()){var pt=map.project(m.getLatLng(),map.getZoom());var off=panel.offsetHeight*0.45;map.panTo(map.unproject(pt.add([0,Math.min(off,map.getSize().y*0.3)]),map.getZoom()));} }
-    if(fly){cluster.zoomToShowLayer(m,function(){m.setStyle(style(S[i],true));m.bringToFront();if(map.getZoom()<8)map.setView(m.getLatLng(),8);center();});}
+    if(fly){
+      // Zoom far enough that the farm is no longer inside a cluster (its parent cluster's zoom + 1, at least 8, clustering stops at 12).
+      cancelFly();
+      var tz=Math.min(12,Math.max(8,m.__parent?m.__parent._zoom+1:8));
+      flyDone=function(){flyDone=null;if(cur!==i)return;m.setStyle(style(S[i],true));if(m._map)m.bringToFront();center();};
+      map.once('moveend',flyDone);
+      map.setView(m.getLatLng(),Math.max(map.getZoom(),tz));
+    }
     else center();
   }
+  var flyDone=null;
+  function cancelFly(){if(flyDone){map.off('moveend',flyDone);flyDone=null;}}
   // Search
   var q=document.getElementById('q'),box=document.getElementById('search'),res=document.getElementById('results'),count=document.getElementById('count');
   function norm(t){return (t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
@@ -655,7 +664,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     var t=norm(q.value.trim());box.classList.toggle('has-q',!!t);
     hits=[];if(t){var parts=t.split(/\s+/);IDX.forEach(function(x,i){if(parts.every(function(p){return x.indexOf(p)>-1;}))hits.push(i);});}
     var list=t?hits:null;
-    cluster.clearLayers();cluster.addLayers(list?list.map(function(i){return markers[i];}):markers);
+    cancelFly();cluster.clearLayers();cluster.addLayers(list?list.map(function(i){return markers[i];}):markers);
     var n=list?list.length:S.length;
     count.innerHTML='<b>'+fmt.format(n)+'</b> of '+fmt.format(S.length)+' wind farms shown'+(t?' for \u201c'+esc(q.value.trim())+'\u201d':'');
     if(list&&list.length){map.fitBounds(L.latLngBounds(list.map(function(i){return [S[i][6],S[i][7]];})),{padding:[40,40],maxZoom:9});}
