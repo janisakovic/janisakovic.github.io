@@ -504,7 +504,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
       <ul class="mapstats" aria-label="Map summary">
         <li><b id="st-sites">–</b><span>potential sites</span></li>
         <li><b id="st-ctry">–</b><span>countries and regions</span></li>
-        <li><b id="st-pre">–</b><span>preliminary</span></li>
+        <li><b id="st-pre">–</b><span>preliminary estimates</span></li>
       </ul>
     </div>
   </div>
@@ -534,7 +534,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
           <h2>Select a site</h2>
           <p>Click a green dot or a numbered cluster, or search for a site by name, country or region. Each site shows the modelled potential: the energy WindNext turbine clusters could produce with the whole crest filled.</p>
           <ul class="legend" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 25,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>25,000–250,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 250,000</li><li><span class="sw sw--prelim"></span>Preliminary</li><li><span class="sw sw--cl">5</span>Group of sites</li></ul>
-          <p class="caveat">Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not been ranked yet, so treat them with extra caution. Not a commitment.</p>
+          <p class="caveat">Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25–30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not yet had our full modelling check, so treat them with extra caution. Not a commitment.</p>
         </div>
         <div class="panel__in" id="panel-site" hidden></div>
       </aside>
@@ -542,8 +542,8 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <ul class="legend maplegend-mobile" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 25,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>25,000–250,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 250,000</li><li><span class="sw sw--prelim"></span>Preliminary</li><li><span class="sw sw--cl">5</span>Group of sites</li></ul>
     <div class="below">
       <div class="note-caveat" role="note">
-        <p><strong>About these numbers.</strong> Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not been ranked yet, so treat them with extra caution. Not a commitment.</p>
-        <p>Households equivalent assumes 3.6 MWh of electricity per household per year (EU average per dwelling, ODYSSEE-MURE). It is shown only for ranked (not preliminary) estimates. Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service), Global Wind Atlas and OpenStreetMap/Overture road data; see <a href="../licenses.html">licences and credits</a> and <a href="../terms.html">terms of use</a>.</p>
+        <p><strong>About these numbers.</strong> Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25–30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not yet had our full modelling check, so treat them with extra caution. Not a commitment.</p>
+        <p>Households equivalent assumes 3.6 MWh of electricity per household per year (EU average per dwelling, ODYSSEE-MURE). It is shown only for sites with a full estimate, not for preliminary ones. Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service), Global Wind Atlas and OpenStreetMap/Overture road data; see <a href="../licenses.html">licences and credits</a> and <a href="../terms.html">terms of use</a>.</p>
       </div>
       <div class="notshown">
         <h3>Your site isn't on the map?</h3>
@@ -588,7 +588,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 (function(){
   var ICON={arrow:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',pin:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5a7 7 0 0 1 14 0C19 14.7 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',ridge:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19 9 9l4 5 3-3 6 8z"/><path d="M2 21h20"/></svg>',bolt:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2 4 13h6l-1 9 7-11h-6z"/><path d="M19 3v5M16.5 5.5h5"/></svg>',person:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c1-4.5 4.2-6.5 8-6.5s7 2 8 6.5"/></svg>'};
   var HH=3.6; // MWh per household per year (EU average per dwelling, ODYSSEE-MURE)
-  var CAVEAT="Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not been ranked yet, so treat them with extra caution. Not a commitment.";
+  var CAVEAT="Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25–30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not yet had our full modelling check, so treat them with extra caution. Not a commitment.";
   var D=window.WINDNEXT_MAP, S=D.sites; // [label,country,operator,mwh,rotors,section,lat,lon,unnamed]
   var fmt=new Intl.NumberFormat('en-GB');
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -632,13 +632,13 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     if(s[8]) h+='<p class="sub">No place name nearby; labelled by country or region.</p>';
     h+='<dl class="meta"><dt>Country or region</dt><dd>'+esc(s[1])+'</dd>'+(s[2]?'<dt>Operator</dt><dd>'+esc(s[2])+'</dd>':'')+'</dl>';
     if(pend){h+='<div class="stat"><div class="k">Potential additional energy</div><div class="v v--pending">Estimate pending</div><p>We have not screened this farm yet. Request a site check and we will prepare its estimate.</p></div>';}
-    else{h+='<div class="stat"><div class="k">Modelled potential, whole crest filled</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Indicative, ±25-30%. Gross, before wake, availability and electrical losses. Not a build plan.</p></div>';}
+    else{h+='<div class="stat"><div class="k">Modelled potential, whole crest filled</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Indicative, ±25–30%. Gross, before wake, availability and electrical losses. Not a build plan.</p></div>';}
     var f='';
     if(s[4]) f+='<li>'+ICON.ridge+'<span><b>'+fmt.format(s[4])+'</b> WindNext rotors along the crest (whole crest filled)</span></li>';
     if(!pend && !isPre(s)){var hh=s[3]/HH,r=hh>=1000?Math.round(hh/100)*100:Math.round(hh/10)*10;
       f+='<li>'+ICON.person+'<span>About <b>'+fmt.format(r)+'</b> households\u2019 annual electricity use<small>Assumes 3.6 MWh per household per year (EU average, ODYSSEE-MURE).</small></span></li>';}
     if(f) h+='<ul class="facts">'+f+'</ul>';
-    if(isPre(s)) h+='<p class="prelim"><b>Preliminary value.</b> This site has not been ranked yet, so treat the estimate with extra caution.</p>';
+    if(isPre(s)) h+='<p class="prelim"><b>Preliminary value:</b> a first estimate that has not yet had our full modelling check. Request a site check and we will prepare a full estimate.</p>';
     h+='<div class="cta-wrap"><a class="btn btn--primary" href="'+ctaHref(s)+'">Request a site check for this site '+ICON.arrow+'</a></div>';
     h+='<p class="caveat">'+esc(CAVEAT)+'</p>';
     ps.innerHTML=h;
