@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Greenfield potential map | WindNext</title>
+<title>Greenfield ridge map | WindNext</title>
+<meta name="description" content="14,542 windy hill and ridge sites within 1 km of a road and with no wind farm, in 28 countries and regions. Pick a country and see the untapped potential for WindNext turbine clusters.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../assets/windnext-logo-stacked.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -12,7 +13,7 @@
 <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="../assets/vendor/markercluster/MarkerCluster.css">
 <!--
-  Greenfield potential map (WC-033, 11 Nov 2026). Unlinked page at /greenfield/ for testing web changes (Jan, 11 Nov). Not linked from any other page or the sitemap.
+  Greenfield ridge map (WC-033, WC-036 country selector, 11 Nov 2026). Unlinked page at /greenfield/ for testing web changes (Jan, 11 Nov). Not linked from any other page or the sitemap.
   Data: greenfield/greenfield_public_sites.geojson (Researcher, 11 Nov 2026). Built by tools/build_greenfield.py into greenfield/greenfield_map_sites.js
   so the page also works when opened from disk (file://).
 -->
@@ -438,9 +439,40 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 .cl--prelim{background:#fff;color:var(--navy);border:2px dashed #283583}
 [dir=auto],.bidi{unicode-bidi:isolate}
 .prelim{font-size:13px;line-height:1.45;padding:10px 12px;border-radius:var(--radius-sm);background:var(--navy-50);color:var(--ink)}
-.panel__empty h2{font-size:22px}
-.panel__empty p{font-size:15px;color:var(--muted);margin:0}
-.panel__empty .legend{flex-direction:column;align-items:flex-start;gap:10px}
+.panel{position:relative}
+.panel.is-site .panel__close{display:flex;position:absolute;right:12px;top:12px;width:40px;height:40px;border:0;border-radius:50%;background:var(--navy-50);color:var(--navy);align-items:center;justify-content:center;cursor:pointer;z-index:3}
+.panel.is-site .panel__close .ico{width:20px;height:20px}
+#pv-list h2,#pv-country h2{font-size:22px}
+.pv-intro{font-size:15px;color:var(--muted);margin:-6px 0 0}
+.cgrp{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-700);margin:8px 0 6px}
+.clist,.toplist{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:2px}
+.clist a{display:block;padding:9px 12px;border-radius:6px;font-size:15px;color:var(--muted);text-decoration:none;min-height:40px}
+.clist a b{color:var(--navy);font-weight:600}
+.clist a:hover,.clist a:focus-visible,.toplist button:hover,.toplist button:focus-visible{background:var(--navy-50)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;align-self:flex-start}
+.back .ico{width:18px;height:18px}
+.back:hover{text-decoration:underline}
+.cstat .cline{margin:0;font-size:18px;line-height:1.45;color:#fff}
+.cstat .cline b{color:var(--green);font-family:var(--font-head);font-weight:800}
+.toph{font-size:17px;margin:4px 0 0}
+.toplist{counter-reset:t}
+.toplist button{display:flex;width:100%;justify-content:space-between;gap:12px;align-items:baseline;text-align:left;background:none;border:0;padding:9px 12px;border-radius:6px;font:inherit;font-size:15px;color:var(--ink);cursor:pointer;min-height:40px;counter-increment:t}
+.toplist button::before{content:counter(t);flex:0 0 18px;font-size:13px;color:var(--muted)}
+.toplist .rn{flex:1;font-weight:600;color:var(--navy);overflow-wrap:anywhere}
+.toplist .rc{font-size:13px;color:var(--muted);white-space:nowrap}
+.pre-dot{display:inline-block;width:9px;height:9px;border-radius:50%;border:1.5px dashed #283583;vertical-align:-1px}
+.panel .eyebrow a{color:inherit;text-decoration:none}
+.panel .eyebrow a:hover{text-decoration:underline}
+.stat .v .ab{font-size:.5em;font-weight:700;color:#fff;letter-spacing:0;margin-right:.1em}
+.mapstats b small{font-size:.5em;font-weight:700;color:#fff;margin-right:.15em}
+.mapstats li{max-width:220px}
+.mapstats b{white-space:nowrap}
+.mapstats span{display:block;line-height:1.4;margin-top:8px}
+.gf-info{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--gutter);margin-top:var(--gutter)}
+.gf-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px 22px}
+.gf-card h3{font-size:19px;margin:0 0 10px}
+.gf-card p{margin:0;font-size:15px;line-height:1.6;color:var(--ink)}
+.gf-steps{margin:0;padding-left:22px;display:grid;gap:8px;font-size:15px;line-height:1.5}
 .below{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--gutter);margin-top:var(--gutter)}
 .note-caveat{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:var(--radius-sm);padding:18px 22px;font-size:15px;line-height:1.55;color:var(--ink)}
 .note-caveat strong{color:var(--navy)}
@@ -455,24 +487,26 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 @media (max-width:980px){
   .mapwrap{grid-template-columns:1fr;height:auto}
   #wn-map{height:min(68vh,600px)}
-  .panel{position:fixed;z-index:1500;left:0;right:0;bottom:0;max-height:60vh;border-left:0;border-radius:20px 20px 0 0;box-shadow:0 -12px 40px rgba(20,27,71,.25);transform:translateY(105%);transition:transform .25s ease;visibility:hidden}
-  .panel.open{transform:none;visibility:visible}
-  .panel::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:#C5CBDD;margin:10px auto 0;flex:0 0 auto}
+  .panel{border-left:0;border-top:1px solid var(--line);overflow:visible}
+  .panel.is-site{position:fixed;z-index:1500;left:0;right:0;bottom:0;max-height:60vh;overflow:auto;border-top:0;border-radius:20px 20px 0 0;box-shadow:0 -12px 40px rgba(20,27,71,.25)}
+  .panel.is-site::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:#C5CBDD;margin:10px auto 0;flex:0 0 auto}
   .panel__in{padding:12px 20px 24px}
-  .panel__close{display:flex;position:absolute;right:10px;top:10px;width:44px;height:44px;border:0;border-radius:50%;background:var(--navy-50);color:var(--navy);align-items:center;justify-content:center;cursor:pointer}
+  .panel.is-site .panel__close{display:flex;position:absolute;right:10px;top:10px;width:44px;height:44px;border:0;border-radius:50%;background:var(--navy-50);color:var(--navy);align-items:center;justify-content:center;cursor:pointer}
   .panel__close .ico{width:20px;height:20px}
   .panel h2{padding-right:44px}
-  .panel__empty{display:none}
   .cta-wrap{position:sticky;bottom:0;z-index:2;background:#fff;margin:0 -20px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -8px 16px rgba(255,255,255,.9)}
   .panel__in{gap:14px}
   .stat{padding:16px 18px}
   .maplegend-mobile{display:block;margin-top:14px}
-  .below{grid-template-columns:1fr}
+  .below,.gf-info{grid-template-columns:1fr}
+  #pv-list,#pv-country{padding:20px 20px 24px}
 }
 @media (max-width:760px){
   .mapstats b{font-size:30px}
+  .mapstats{flex-wrap:wrap;gap:20px 28px}
   .toolbar .legend{display:none}
   .stat .v{font-size:30px}
+  .toplist button{flex-wrap:wrap}.toplist .rc{flex-basis:100%;padding-left:30px}
 }
 </style>
 </head>
@@ -495,16 +529,16 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 <main id="main">
 <section class="maphero" aria-labelledby="h1">
   <div class="container">
-    <div class="eyebrow">Greenfield map · New hill and ridge sites in Europe and beyond</div>
+    <div class="eyebrow">Greenfield map · Untapped hill and ridge sites</div>
     <div class="maphero__row">
       <div>
-        <h1 id="h1">Find a greenfield ridge. <span class="accent">See the potential MWh.</span></h1>
-        <p class="lead">Our modelling estimates how much energy WindNext turbine clusters could produce on hill and ridge sites with no existing wind farm (modelled potential, with the whole crest filled; not a build plan). Search for a site, click it, and request a site check.</p>
+        <h1 id="h1">Good wind. No wind farm. <span class="accent">Yet.</span></h1>
+        <p class="lead">Our modelling found 14,542 windy ridges within 1 km of a road, with no wind farm on them: often too steep or too sensitive for tall turbines. Pick a country to see what WindNext turbine clusters could unlock there.</p>
       </div>
       <ul class="mapstats" aria-label="Map summary">
-        <li><b id="st-sites">–</b><span>potential sites</span></li>
-        <li><b id="st-ctry">–</b><span>countries and regions</span></li>
-        <li><b id="st-pre">–</b><span>preliminary estimates</span></li>
+        <li><b id="st-sites">14,542</b><span>windy ridges within 1 km of a road</span></li>
+        <li><b id="st-ctry">28</b><span>countries and regions</span></li>
+        <li><b id="st-twh"><small>about</small> 1,830 TWh</b><span>a year, technical maximum</span></li>
       </ul>
     </div>
   </div>
@@ -527,27 +561,40 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <p class="count" id="count" aria-live="polite">Loading sites…</p>
     <div class="mapwrap">
       <div id="wn-map" role="region" aria-label="Map of greenfield potential sites. Use the search box to find a site with the keyboard."></div>
-      <aside class="panel" id="panel" aria-live="polite" aria-label="Site details">
+      <aside class="panel" id="panel" aria-live="polite" aria-label="Countries and site details">
         <button class="panel__close" type="button" aria-label="Close details"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-        <div class="panel__in panel__empty" id="panel-empty">
-          <div class="eyebrow">How to use the map</div>
-          <h2>Select a site</h2>
-          <p>Click a green dot or a numbered cluster, or search for a site by name, country or region. Each site shows the modelled potential: the energy WindNext turbine clusters could produce with the whole crest filled.</p>
-          <ul class="legend" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 25,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>25,000–250,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 250,000</li><li><span class="sw sw--prelim"></span>Preliminary</li><li><span class="sw sw--cl">5</span>Group of sites</li></ul>
-          <p class="caveat">Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25–30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not yet had our full modelling check, so treat them with extra caution. Not a commitment.</p>
+        <div class="panel__in" id="pv-list">
+          <h2>Choose a country</h2>
+          <p class="pv-intro">See its untapped ridge potential and its largest ridges.</p>
+          <div id="clist"></div>
         </div>
+        <div class="panel__in" id="pv-country" hidden></div>
         <div class="panel__in" id="panel-site" hidden></div>
       </aside>
     </div>
     <ul class="legend maplegend-mobile" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 25,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>25,000–250,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 250,000</li><li><span class="sw sw--prelim"></span>Preliminary</li><li><span class="sw sw--cl">5</span>Group of sites</li></ul>
+    <div class="gf-info">
+      <div class="gf-card">
+        <h3>How we found these ridges</h3>
+        <p>Every ridge on the map rises at least 100 m above its surroundings, runs for at least 2 km, has an average wind of at least 7 m/s at 50 m with most of it blowing across the crest, has a road or track within 1 km, and lies at least 3 km from any existing or planned wind farm. Protected areas, distance to homes, grid connection and airports are not screened yet: a site check covers them.</p>
+      </div>
+      <div class="gf-card">
+        <h3>How to use the map</h3>
+        <ol class="gf-steps">
+          <li>Choose a country.</li>
+          <li>Pick a ridge on the map or from the list.</li>
+          <li>Request a site check. We reply within 5 working days.</li>
+        </ol>
+      </div>
+    </div>
     <div class="below">
       <div class="note-caveat" role="note">
-        <p><strong>About these numbers.</strong> Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25–30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not yet had our full modelling check, so treat them with extra caution. Not a commitment.</p>
-        <p>Households equivalent assumes 3.6 MWh of electricity per household per year (EU average per dwelling, ODYSSEE-MURE). It is shown only for sites with a full estimate, not for preliminary ones. Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service), Global Wind Atlas and OpenStreetMap/Overture road data; see <a href="../licenses.html">licences and credits</a> and <a href="../terms.html">terms of use</a>.</p>
+        <p><strong>About these numbers.</strong> Modelled potential is a gross estimate from public wind and terrain data, with rotors along the whole crest. It is a technical maximum, not a build plan: real projects use a fraction of it. Figures are before wake, availability and electrical losses, and real yield depends on micro-siting, grid capacity and permitting. Uncertainty is roughly ±25–30%. Preliminary estimates have not yet had our full modelling check. Not a commitment.</p>
+        <p>Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service), Global Wind Atlas and OpenStreetMap/Overture road data; see <a href="../licenses.html">licences and credits</a> and <a href="../terms.html">terms of use</a>.</p>
       </div>
       <div class="notshown">
-        <h3>Your site isn't on the map?</h3>
-        <p>The map shows a selection of greenfield hill and ridge sites, not every site we can assess. If you have a site that isn't shown, ask us for a site check.</p>
+        <h3>Have a ridge in mind?</h3>
+        <p>The map shows a selection of sites, not every ridge we can assess. Send us a location and we will check it.</p>
         <a class="btn btn--primary" href="../index.html#contact">Ask for a site check <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -586,18 +633,33 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false');}});
 })();
 (function(){
-  var ICON={arrow:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',pin:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5a7 7 0 0 1 14 0C19 14.7 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',ridge:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19 9 9l4 5 3-3 6 8z"/><path d="M2 21h20"/></svg>',bolt:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2 4 13h6l-1 9 7-11h-6z"/><path d="M19 3v5M16.5 5.5h5"/></svg>',person:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c1-4.5 4.2-6.5 8-6.5s7 2 8 6.5"/></svg>'};
-  var HH=3.6; // MWh per household per year (EU average per dwelling, ODYSSEE-MURE)
-  var CAVEAT="Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25–30%. Values assume the whole crest is filled with rotors; they are a potential, not a build plan. Preliminary estimates have not yet had our full modelling check, so treat them with extra caution. Not a commitment.";
+  var ICON={arrow:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',back:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',ridge:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19 9 9l4 5 3-3 6 8z"/><path d="M2 21h20"/></svg>'};
   var D=window.WINDNEXT_MAP, S=D.sites; // [label,country,operator,mwh,rotors,section,lat,lon,unnamed]
   var fmt=new Intl.NumberFormat('en-GB');
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  // TWh: whole numbers from 10 TWh up, one decimal below (WC-036).
+  function twh(m){var t=m/1e6;return t>=9.95?fmt.format(Math.round(t)):(Math.round(t*10)/10).toFixed(1);}
+  function isPre(s){return /preliminary/.test(s[5]);}
+  // Countries (WC-036): Europe first, then Rest of the world; largest potential first; countries under 20 ridges grouped.
+  var EUROPE=['Norway','Türkiye','Spain','France','Austria','Greece','Croatia','United Kingdom','Ireland','Bulgaria','Slovenia','Sweden','Czechia','Germany','Portugal','Italy','Finland','Poland','Slovakia','Romania','Hungary'];
+  var REGION=['Canada (British Columbia)','China (Inner Mongolia)'],OTHER='Other analysed countries',MINR=20;
+  function slug(t){return t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+  var byC={};S.forEach(function(s,i){(byC[s[1]]=byC[s[1]]||[]).push(i);});
+  var C={},ORDER=[];
+  function addC(name,idx,members){var m=0;idx.forEach(function(i){m+=S[i][3]||0;});C[name]={name:name,idx:idx,mwh:m,slug:slug(name),members:members||null,eu:members?members.every(function(x){return EUROPE.indexOf(x)>-1;}):EUROPE.indexOf(name)>-1};}
+  var small=[];Object.keys(byC).forEach(function(k){if(byC[k].length<MINR)small.push(k);else addC(k,byC[k]);});
+  if(small.length){small.sort();var oi=[];small.forEach(function(k){oi=oi.concat(byC[k]);});oi.sort(function(a,b){return a-b;});addC(OTHER,oi,small);}
+  var cOf=S.map(function(s){return C[s[1]]?s[1]:OTHER;});
+  var bySlug={};Object.keys(C).forEach(function(k){bySlug[C[k].slug]=k;});
+  var ALIAS={'turkey':'Türkiye','british-columbia':'Canada (British Columbia)','inner-mongolia':'China (Inner Mongolia)','other':OTHER};
+  Object.keys(ALIAS).forEach(function(a){if(C[ALIAS[a]])bySlug[a]=ALIAS[a];});
+  function sorted(eu){return Object.keys(C).filter(function(k){return C[k].eu===eu;}).sort(function(a,b){if((a===OTHER)!==(b===OTHER))return a===OTHER?1:-1;return C[b].mwh-C[a].mwh;});}
+  function joinAnd(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];}
   var BOUNDS=L.latLngBounds([-62,-180],[78,180]);
   var mobile=function(){return window.matchMedia('(max-width:980px)').matches;};
   var map=L.map('wn-map',{maxBounds:BOUNDS,maxBoundsViscosity:1,minZoom:0,maxZoom:14,zoomSnap:.5,worldCopyJump:false,preferCanvas:true});
   // MapTiler "Landscape" raster tiles: light, with hill shading for ridges, softened with CSS so the green markers stand out.
   // Public key, restricted in the MapTiler account to windnext.energy (tiles are refused on other domains, incl. localhost).
-  function isPre(s){return /preliminary/.test(s[5]);}
   var MAPTILER_KEY='A5tAEC2vScsq6ZtAX12B',MAPTILER_STYLE='landscape';
   var tiles=L.tileLayer('https://api.maptiler.com/maps/'+MAPTILER_STYLE+'/{z}/{x}/{y}{r}.png?key='+MAPTILER_KEY,{tileSize:512,zoomOffset:-1,minZoom:0,minNativeZoom:1,maxZoom:19,bounds:BOUNDS.pad(.2),
     attribution:'&copy; <a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
@@ -617,43 +679,63 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   var markers=S.map(function(s,i){var m=L.circleMarker([s[6],s[7]],Object.assign({renderer:renderer},style(s)));m._i=i;
     m.bindTooltip('<span dir="auto">'+esc(s[0])+'</span>',{direction:'top',offset:[0,-6]});m.on('click',function(){select(i,false);});return m;});
   cluster.addLayers(markers);map.addLayer(cluster);
-  var all=L.latLngBounds(S.map(function(s){return [s[6],s[7]];}));
-  (function(){var c={},p=0;S.forEach(function(s){c[s[1]]=1;if(isPre(s))p++;});document.getElementById('st-sites').textContent=fmt.format(S.length);document.getElementById('st-ctry').textContent=Object.keys(c).length;document.getElementById('st-pre').textContent=fmt.format(p);document.getElementById('count').innerHTML='<b>'+fmt.format(S.length)+'</b> sites shown';})();
+  var TOT=0;S.forEach(function(s){TOT+=s[3]||0;});
+  document.getElementById('st-sites').textContent=fmt.format(S.length);
+  document.getElementById('st-ctry').textContent=Object.keys(byC).length;
+  document.getElementById('st-twh').innerHTML='<small>about</small> '+twh(TOT)+' TWh';
   // Start fully zoomed out so the whole world is visible (Jan, 11 Nov).
   function worldZoom(){return Math.max(0,Math.floor(map.getBoundsZoom(BOUNDS)*2)/2);}
   function home(){map.setMinZoom(worldZoom());map.setView(BOUNDS.getCenter(),worldZoom());}
   home();
+  // Country list
+  function item(k){var c=C[k];return '<li><a href="#'+c.slug+'" data-c="'+esc(k)+'"><b>'+esc(k)+'</b> · '+fmt.format(c.idx.length)+' ridges</a></li>';}
+  document.getElementById('clist').innerHTML='<h3 class="cgrp">Europe</h3><ul class="clist">'+sorted(true).map(item).join('')+'</ul><h3 class="cgrp">Rest of the world</h3><ul class="clist">'+sorted(false).map(item).join('')+'</ul>';
   // Panel
-  var panel=document.getElementById('panel'),pe=document.getElementById('panel-empty'),ps=document.getElementById('panel-site'),cur=null;
+  var panel=document.getElementById('panel'),pl=document.getElementById('pv-list'),pc=document.getElementById('pv-country'),ps=document.getElementById('panel-site'),cur=null,curC=null;
+  var count=document.getElementById('count');
+  function setCount(n){count.innerHTML=n===S.length?'<b>'+fmt.format(n)+'</b> sites shown':'<b>'+fmt.format(n)+'</b> of '+fmt.format(S.length)+' sites shown';}
+  function view(v){pl.hidden=v!=='list';pc.hidden=v!=='country';ps.hidden=v!=='site';panel.classList.toggle('is-site',v==='site');panel.classList.toggle('open',v==='site');panel.scrollTop=0;}
+  var BACK='<a class="back" href="#" data-all="1">'+ICON.back+'All countries</a>';
   function ctaHref(s){return '../index.html?site='+encodeURIComponent(s[0])+'&country='+encodeURIComponent(s[1])+'#contact';}
-  function render(s){
-    var pend=s[3]==null, h='';
-    h+='<div class="eyebrow">'+esc(s[1])+'</div><h2 id="ps-h" dir="auto">'+esc(s[0])+'</h2>';
-    if(s[8]) h+='<p class="sub">No place name nearby; labelled by country or region.</p>';
-    h+='<dl class="meta"><dt>Country or region</dt><dd>'+esc(s[1])+'</dd>'+(s[2]?'<dt>Operator</dt><dd>'+esc(s[2])+'</dd>':'')+'</dl>';
-    if(pend){h+='<div class="stat"><div class="k">Potential additional energy</div><div class="v v--pending">Estimate pending</div><p>We have not screened this farm yet. Request a site check and we will prepare its estimate.</p></div>';}
-    else{h+='<div class="stat"><div class="k">Modelled potential, whole crest filled</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Indicative, ±25–30%. Gross, before wake, availability and electrical losses. Not a build plan.</p></div>';}
-    var f='';
-    if(s[4]) f+='<li>'+ICON.ridge+'<span><b>'+fmt.format(s[4])+'</b> WindNext rotors along the crest (whole crest filled)</span></li>';
-    if(!pend && !isPre(s)){var hh=s[3]/HH,r=hh>=1000?Math.round(hh/100)*100:Math.round(hh/10)*10;
-      f+='<li>'+ICON.person+'<span>About <b>'+fmt.format(r)+'</b> households\u2019 annual electricity use<small>Assumes 3.6 MWh per household per year (EU average, ODYSSEE-MURE).</small></span></li>';}
-    if(f) h+='<ul class="facts">'+f+'</ul>';
-    if(isPre(s)) h+='<p class="prelim"><b>Preliminary value:</b> a first estimate that has not yet had our full modelling check. Request a site check and we will prepare a full estimate.</p>';
-    h+='<div class="cta-wrap"><a class="btn btn--primary" href="'+ctaHref(s)+'">Request a site check for this site '+ICON.arrow+'</a></div>';
-    h+='<p class="caveat">'+esc(CAVEAT)+'</p>';
+  function renderCountry(k){var c=C[k],h=BACK;
+    h+='<h2 id="pc-h">'+esc(k)+'</h2>';
+    h+='<div class="stat cstat"><p class="cline">'+(c.members?esc(joinAnd(c.members))+' · ':'')+'<b>'+fmt.format(c.idx.length)+'</b> ridges · about <b>'+twh(c.mwh)+' TWh</b> a year of untapped ridge potential</p>';
+    h+='<p>Technical maximum, if every suitable crest were used. Real projects use a fraction of this.</p></div>';
+    if(REGION.indexOf(k)>-1) h+='<p class="prelim">Only this region was analysed.</p>';
+    h+='<h3 class="toph">Largest ridges in '+esc(c.members?joinAnd(c.members):k)+'</h3><ol class="toplist">';
+    c.idx.slice().sort(function(a,b){return (S[b][3]||0)-(S[a][3]||0);}).slice(0,10).forEach(function(i){var s=S[i];
+      h+='<li><button type="button" data-i="'+i+'"><span class="rn" dir="auto">'+esc(s[0])+'</span><span class="rc">'+fmt.format(s[3])+' MWh a year'+(isPre(s)?' · <i class="pre-dot" title="Preliminary"></i>':'')+'</span></button></li>';});
+    pc.innerHTML=h+'</ol>';
+  }
+  function renderSite(s){var h=BACK;
+    h+='<div class="eyebrow"><a href="#'+C[cOf[S.indexOf(s)]].slug+'">'+esc(s[1])+'</a></div><h2 id="ps-h" dir="auto">'+esc(s[0])+'</h2>';
+    h+='<div class="stat"><div class="v"><span class="ab">about</span> '+fmt.format(s[3])+' <span class="u">MWh a year</span></div><p>if the whole crest is used</p></div>';
+    if(s[4]) h+='<ul class="facts"><li>'+ICON.ridge+'<span><b>'+fmt.format(s[4])+'</b> rotor positions along the crest</span></li></ul>';
+    if(isPre(s)) h+='<p class="prelim">First estimate. Our full modelling check is still to come.</p>';
+    h+='<div class="cta-wrap"><a class="btn btn--primary" href="'+ctaHref(s)+'">Request a site check '+ICON.arrow+'</a></div>';
     ps.innerHTML=h;
   }
-  function openPanel(){pe.hidden=true;ps.hidden=false;panel.classList.add('open');}
-  function closePanel(){panel.classList.remove('open');if(cur!=null){markers[cur].setStyle(style(S[cur]));cur=null;}ps.hidden=true;pe.hidden=false;}
-  panel.querySelector('.panel__close').addEventListener('click',closePanel);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur!=null&&document.activeElement!==q)closePanel();});
+  function unsel(){if(cur!=null){markers[cur].setStyle(style(S[cur]));cur=null;}}
+  function show(list){cancelFly();cluster.clearLayers();cluster.addLayers(list?list.map(function(i){return markers[i];}):markers);setCount(list?list.length:S.length);}
+  function fitC(k){var b=L.latLngBounds(C[k].idx.map(function(i){return [S[i][6],S[i][7]];}));map.fitBounds(b,{padding:[30,30],maxZoom:8});}
+  function showCountry(k){unsel();curC=k;clearSearch();show(C[k].idx);fitC(k);renderCountry(k);view('country');document.title=k+' · Greenfield ridge map | WindNext';}
+  function showAll(){unsel();curC=null;clearSearch();show(null);home();view('list');document.title=TITLE;}
+  function closeSite(){unsel();view(curC?'country':'list');}
+  var TITLE=document.title;
+  function applyHash(){var h=decodeURIComponent(location.hash.replace(/^#/,'')).toLowerCase(),k=bySlug[h];if(k){if(k!==curC||pc.hidden)showCountry(k);}else if(curC)showAll();}
+  function goAll(){if(location.hash)history.pushState('', document.title, location.pathname+location.search);showAll();}
+  window.addEventListener('hashchange',applyHash);window.addEventListener('popstate',applyHash);
+  panel.addEventListener('click',function(e){var a=e.target.closest('a[data-all]');if(a){e.preventDefault();goAll();return;}
+    var ca=e.target.closest('a[href^="#"]');if(ca&&bySlug[ca.getAttribute('href').slice(1)]===curC&&curC){e.preventDefault();unsel();view('country');return;}
+    var b=e.target.closest('.toplist button');if(b)select(+b.dataset.i,true);});
+  panel.querySelector('.panel__close').addEventListener('click',closeSite);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ps.hidden&&document.activeElement!==q)closeSite();});
   function select(i,fly){
-    if(cur!=null) markers[cur].setStyle(style(S[cur]));
-    cur=i;var m=markers[i];m.setStyle(style(S[i],true));m.bringToFront();
-    render(S[i]);openPanel();panel.scrollTop=0;
+    unsel();cur=i;var m=markers[i];m.setStyle(style(S[i],true));if(m._map)m.bringToFront();
+    renderSite(S[i]);view('site');
     function center(){ if(mobile()){var pt=map.project(m.getLatLng(),map.getZoom());var off=panel.offsetHeight*0.45;map.panTo(map.unproject(pt.add([0,Math.min(off,map.getSize().y*0.3)]),map.getZoom()));} }
     if(fly){
-      // Zoom far enough that the farm is no longer inside a cluster (its parent cluster's zoom + 1, at least 8, clustering stops at 12).
+      // Zoom far enough that the site is no longer inside a cluster (its parent cluster's zoom + 1, at least 8, clustering stops at 12).
       cancelFly();
       var tz=Math.min(12,Math.max(8,m.__parent?m.__parent._zoom+1:8));
       flyDone=function(){flyDone=null;if(cur!==i)return;m.setStyle(style(S[i],true));if(m._map)m.bringToFront();center();};
@@ -664,18 +746,20 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   }
   var flyDone=null;
   function cancelFly(){if(flyDone){map.off('moveend',flyDone);flyDone=null;}}
-  // Search
-  var q=document.getElementById('q'),box=document.getElementById('search'),res=document.getElementById('results'),count=document.getElementById('count');
-  function norm(t){return (t||'').normalize('NFD').replace(/[\u0300-\u036f\u064b-\u065f\u0670]/g,'').replace(/[\u064a\u0649]/g,'\u06cc').replace(/\u0643/g,'\u06a9').replace(/[\u0623\u0625\u0622]/g,'\u0627').replace(/\u0629/g,'\u0647').toLowerCase();}
-  var IDX=S.map(function(s){return norm(s[0]+' '+s[1]+' '+(s[2]||'')+(s[1]==='T\u00fcrkiye'?' turkey':''));});
-  var shown=null,timer=null,active=-1,hits=[];
+  // Search (all countries; a search leaves the country view)
+  var q=document.getElementById('q'),box=document.getElementById('search'),res=document.getElementById('results');
+  function norm(t){return (t||'').normalize('NFD').replace(/[̀-ًͯ-ٰٟ]/g,'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').toLowerCase();}
+  var IDX=S.map(function(s){return norm(s[0]+' '+s[1]+' '+(s[2]||'')+(s[1]==='Türkiye'?' turkey':''));});
+  var timer=null,active=-1,hits=[];
+  function clearSearch(){q.value='';box.classList.remove('has-q');res.classList.remove('open');q.setAttribute('aria-expanded','false');res.innerHTML='';}
   function filter(){
     var t=norm(q.value.trim());box.classList.toggle('has-q',!!t);
+    if(t&&curC){curC=null;if(location.hash)history.replaceState('', TITLE, location.pathname+location.search);document.title=TITLE;}
+    if(t){unsel();view('list');}
     hits=[];if(t){var parts=t.split(/\s+/);IDX.forEach(function(x,i){if(parts.every(function(p){return x.indexOf(p)>-1;}))hits.push(i);});}
     var list=t?hits:null;
-    cancelFly();cluster.clearLayers();cluster.addLayers(list?list.map(function(i){return markers[i];}):markers);
-    var n=list?list.length:S.length;
-    count.innerHTML='<b>'+fmt.format(n)+'</b> of '+fmt.format(S.length)+' sites shown'+(t?' for \u201c'+esc(q.value.trim())+'\u201d':'');
+    show(list);
+    if(t)count.innerHTML+=' for “'+esc(q.value.trim())+'”';
     if(list&&list.length){map.fitBounds(L.latLngBounds(list.map(function(i){return [S[i][6],S[i][7]];})),{padding:[40,40],maxZoom:9});}
     else if(!t){home();}
     renderResults(t);
@@ -699,10 +783,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   box.querySelector('.search__clear').addEventListener('click',function(){q.value='';filter();q.focus();});
   function pick(i){res.classList.remove('open');q.setAttribute('aria-expanded','false');select(i,true);}
   window.addEventListener('resize',function(){map.setMinZoom(worldZoom());});
-  // Deep link: map.html?site=<name>
+  setCount(S.length);
+  // Deep links: #<country> opens a country; ?site=<name> opens a site.
+  if(location.hash)applyHash();
   var p=new URLSearchParams(location.search).get('site');
   if(p){var k=S.findIndex(function(s){return s[0]===p;});if(k>-1)setTimeout(function(){select(k,true);},300);}
-  window.WN={select:function(name){var k=S.findIndex(function(s){return s[0]===name;});if(k>-1)select(k,true);return k;},map:map,count:S.length};
+  window.WN={select:function(name){var k=S.findIndex(function(s){return s[0]===name;});if(k>-1)select(k,true);return k;},map:map,count:S.length,countries:function(){return Object.keys(C).map(function(k){return {name:k,slug:C[k].slug,eu:C[k].eu,ridges:C[k].idx.length,twh:twh(C[k].mwh),mwh:C[k].mwh};});},showCountry:showCountry,state:function(){return {curC:curC,shown:cluster.getLayers().length,view:!pl.hidden?'list':!pc.hidden?'country':'site'};}};
 })();
 </script>
 </body>
