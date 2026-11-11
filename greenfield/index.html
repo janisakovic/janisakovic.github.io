@@ -667,7 +667,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   // Search
   var q=document.getElementById('q'),box=document.getElementById('search'),res=document.getElementById('results'),count=document.getElementById('count');
   function norm(t){return (t||'').normalize('NFD').replace(/[\u0300-\u036f\u064b-\u065f\u0670]/g,'').replace(/[\u064a\u0649]/g,'\u06cc').replace(/\u0643/g,'\u06a9').replace(/[\u0623\u0625\u0622]/g,'\u0627').replace(/\u0629/g,'\u0647').toLowerCase();}
-  var IDX=S.map(function(s){return norm(s[0]+' '+s[1]+' '+(s[2]||''));});
+  var IDX=S.map(function(s){return norm(s[0]+' '+s[1]+' '+(s[2]||'')+(s[1]==='T\u00fcrkiye'?' turkey':''));});
   var shown=null,timer=null,active=-1,hits=[];
   function filter(){
     var t=norm(q.value.trim());box.classList.toggle('has-q',!!t);
