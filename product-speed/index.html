@@ -602,9 +602,9 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
         <div class="seg" role="group" aria-label="Site type"><button type="button" id="mGF" aria-pressed="true">New ridges</button><button type="button" id="mEX" aria-pressed="false">Existing wind farms</button></div>
       </div>
       <div class="ctl__g gust"><span><label for="gust">Design gust, 50-year</label></span>
-        <div class="gust__row"><output class="gust__val" id="gv" for="gust">72<small> m/s</small></output><input id="gust" type="range" min="40" max="100" step="0.5" value="72" aria-describedby="gv"></div>
+        <div class="gust__row"><output class="gust__val" id="gv" for="gust">72<small> m/s</small></output><input id="gust" type="range" min="40" max="120" step="0.5" value="72" aria-describedby="gv"></div>
         <div class="presets" id="presets" aria-label="Quick picks">
-          <button type="button" data-v="52.5">IEC III · 52.5</button><button type="button" data-v="59.5">IEC II · 59.5</button><button type="button" data-v="70">IEC I · 70</button><button type="button" data-v="72">72 m/s</button>
+          <button type="button" data-v="52.5">IEC III · 52.5</button><button type="button" data-v="59.5">IEC II · 59.5</button><button type="button" data-v="70">IEC I · 70</button><button type="button" data-v="72">72 m/s</button><button type="button" data-v="101.5">Design ≈ 101.5</button>
         </div>
       </div>
       <div class="ctl__g snow"><span><label for="snow">Snow factor</label></span>
@@ -737,7 +737,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
            na:{color:'#7A829E',weight:1.25,fillColor:'#fff',fillOpacity:.6,opacity:1,dashArray:'2 2'},
            hid:{opacity:0,fillOpacity:0}};
   // Chart
-  var X0=40,X1=100,STEP=.5,NX=(X1-X0)/STEP+1;
+  var X0=40,X1=120,STEP=.5,NX=(X1-X0)/STEP+1;
   function cum(list,useSnow){var a=[new Float64Array(NX),new Float64Array(NX)];
     list.forEach(function(s){var g=useSnow?dg(s):s[8];var k=Math.ceil((g-X0)/STEP-1e-9);if(k<0)k=0;if(k<NX)a[s[3]][k]+=s[7];});
     for(var r=0;r<2;r++)for(var k=1;k<NX;k++)a[r][k]+=a[r][k-1];return a;}
@@ -751,7 +751,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
       for(k=NX-1;k>=0;k--){var x2=xs(X0+k*STEP),xn2=xs(Math.min(X1,X0+(k+1)*STEP));d+='L'+xn2+','+ys(lo[k])+'L'+x2+','+ys(lo[k]);}return d+'Z';}
     var zero=new Float64Array(NX),o='';
     for(var t=0;t<=4;t++){var v=ymax*t/4,y=ys(v*1e6);o+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y+'" y2="'+y+'" stroke="#E3E6EF"/><text class="ax" x="'+(PL-6)+'" y="'+(y+4)+'" text-anchor="end">'+(ymax<10?f1.format(v):fmt.format(v))+'</text>';}
-    [40,50,60,70,80,90,100].forEach(function(x){o+='<text class="ax" x="'+xs(x)+'" y="'+(H-PB+16)+'" text-anchor="middle">'+x+'</text>';});
+    [40,60,80,100,120].forEach(function(x){o+='<text class="ax" x="'+xs(x)+'" y="'+(H-PB+16)+'" text-anchor="middle">'+x+'</text>';});
     o+='<text class="ax" x="'+(W-PR)+'" y="'+(H-2)+'" text-anchor="end">m/s</text><text class="ax" x="2" y="10">TWh/yr</text>';
     [52.5,59.5,70].forEach(function(x,i){o+='<line x1="'+xs(x)+'" x2="'+xs(x)+'" y1="'+PT+'" y2="'+(H-PB)+'" stroke="#C9CFE6" stroke-dasharray="2 3"/><text class="ax" x="'+(xs(x)+3)+'" y="'+(PT+10)+'" style="font-size:10px">'+['III','II','I'][i]+'</text>';});
     o+='<path d="'+path(zero,c[0])+'" fill="'+COL[0]+'"/>';
@@ -775,7 +775,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   function render(){
     var md=st.mode,inclP=st.prot&&md===0;
     $('gv').innerHTML=f1.format(st.lim).replace(/,0$|\.0$/,'')+'<small> m/s</small>';$('sv').textContent='×'+st.f.toFixed(2);
-    gust.style.setProperty('--p',((st.lim-40)/60*100)+'%');snow.style.setProperty('--p',((st.f-1)/.4*100)+'%');
+    gust.style.setProperty('--p',((st.lim-40)/80*100)+'%');snow.style.setProperty('--p',((st.f-1)/.4*100)+'%');
     $('mGF').setAttribute('aria-pressed',md===0);$('mEX').setAttribute('aria-pressed',md===1);$('protG').style.visibility=md===0?'visible':'hidden';
     [].forEach.call(document.querySelectorAll('#presets button'),function(b){b.classList.toggle('on',+b.dataset.v===st.lim);});
     var base=[],withG=[],on=0,onM=0,onR=0,tot=0,totG=0;
@@ -791,7 +791,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
     drawChart(c,nsT);
     var k90=-1,T=CUR.top[NX-1];for(var k=0;k<NX;k++){if(CUR.top[k]>=.9*T){k90=k;break;}}
     $('cNote').textContent=twh(CUR.top[idx(st.lim)])+' TWh/yr at '+f1.format(st.lim).replace(/\.0$/,'')+' m/s. 90% of the assessed total is reached at '+(k90<0?'–':f1.format(X0+k90*STEP).replace(/\.0$/,''))+' m/s.';
-    var rows=[['IEC III',52.5],['IEC II',59.5],['IEC I',70],['72 m/s',72]],have=rows.some(function(r){return r[1]===st.lim;});
+    var rows=[['IEC III',52.5],['IEC II',59.5],['IEC I',70],['72 m/s',72],['Design (72.6 m/s 10-min)',101.5]],have=rows.some(function(r){return r[1]===st.lim;});
     if(!have)rows.push(['Selected',st.lim]);rows.sort(function(a,b){return a[1]-b[1];});
     function nAt(x){var n=0;withG.forEach(function(s){if(dg(s)<=x+1e-9)n++;});return n;}
     $('tbl').innerHTML='<tr><th>Gust</th><th>EU and UK</th><th>Norway</th><th>Total TWh</th><th>Sites</th></tr>'+rows.map(function(r){var k=idx(r[1]);
