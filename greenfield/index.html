@@ -398,6 +398,11 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 .results .rn{font-weight:600;color:var(--navy)}
 .results .rc{font-size:13px;color:var(--muted);white-space:nowrap}
 .results .empty{padding:12px;font-size:15px;color:var(--muted)}
+.speed{flex:0 1 300px;min-width:240px;margin-right:auto;padding-bottom:6px}
+.speed label{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+.speed__v{font-weight:700;color:var(--navy);white-space:nowrap}
+.speed input{width:100%;margin:10px 0 4px;accent-color:var(--green);cursor:pointer}
+.speed__n{margin:0;font-size:13px;color:var(--muted)}
 .count{font-size:15px;color:var(--muted);margin:0 0 12px}
 .count b{color:var(--navy)}
 .legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14px;color:var(--ink);margin:0;padding:0;list-style:none}
@@ -555,6 +560,11 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
           <button class="search__clear" type="button" aria-label="Clear search"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
         </div>
         <ul class="results" id="results" role="listbox" aria-label="Matching sites"></ul>
+      </div>
+      <div class="speed" id="speed">
+        <label for="gs">Supported wind speed <span class="speed__v" id="gsv">Any</span></label>
+        <input id="gs" type="range" autocomplete="off" min="40" max="120" step="0.5" value="120" aria-describedby="gsn" aria-valuetext="Any wind speed">
+        <p class="speed__n" id="gsn">Shows ridges whose 50-year design gust at the crest is within this limit.</p>
       </div>
       <ul class="legend" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 25,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>25,000–250,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 250,000</li><li><span class="sw sw--prelim"></span>Preliminary</li><li><span class="sw sw--cl">5</span>Group of sites</li></ul>
     </div>
@@ -716,7 +726,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     ps.innerHTML=h;
   }
   function unsel(){if(cur!=null){markers[cur].setStyle(style(S[cur]));cur=null;}}
-  function show(list){cancelFly();cluster.clearLayers();cluster.addLayers(list?list.map(function(i){return markers[i];}):markers);setCount(list?list.length:S.length);}
+  // Supported wind speed slider (Jan, 12 Nov 2026): s[9] = 50-year design gust at the crest, m/s. Slider at its top = no limit.
+  var GS=Infinity,GMAX=120,lastList=null;
+  function okG(i){return GS===Infinity||(S[i][9]!=null&&S[i][9]<=GS);}
+  function show(list){cancelFly();lastList=list;var ids=list;if(GS!==Infinity)ids=(list||S.map(function(_,i){return i;})).filter(okG);
+    cluster.clearLayers();cluster.addLayers(ids?ids.map(function(i){return markers[i];}):markers);setCount(ids?ids.length:S.length);
+    if(GS!==Infinity){var m=0;ids.forEach(function(i){m+=S[i][3]||0;});count.innerHTML+=' up to '+String(GS)+' m/s · about '+twh(m)+' TWh a year';}}
   function fitC(k){var b=L.latLngBounds(C[k].idx.map(function(i){return [S[i][6],S[i][7]];}));map.fitBounds(b,{padding:[30,30],maxZoom:8});}
   function showCountry(k){unsel();curC=k;clearSearch();show(C[k].idx);fitC(k);renderCountry(k);view('country');document.title=k+' · Greenfield ridge map | WindNext';}
   function showAll(){unsel();curC=null;clearSearch();show(null);home();view('list');document.title=TITLE;}
@@ -783,6 +798,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   box.querySelector('.search__clear').addEventListener('click',function(){q.value='';filter();q.focus();});
   function pick(i){res.classList.remove('open');q.setAttribute('aria-expanded','false');select(i,true);}
   window.addEventListener('resize',function(){map.setMinZoom(worldZoom());});
+  var gs=document.getElementById('gs'),gsv=document.getElementById('gsv'),gtimer=null;
+  function gLabel(){var v=+gs.value;GS=v>=GMAX?Infinity:v;var t=GS===Infinity?'Any':'Up to '+(v%1?v.toFixed(1):v)+' m/s';gsv.textContent=t;gs.setAttribute('aria-valuetext',GS===Infinity?'Any wind speed':t);}
+  gs.value=GMAX;gLabel();
+  gs.addEventListener('input',function(){gLabel();clearTimeout(gtimer);gtimer=setTimeout(function(){
+    if(cur!=null&&!okG(cur))closeSite();
+    var t=q.value.trim();show(lastList);if(t)count.innerHTML+=' for “'+esc(t)+'”';},120);});
   setCount(S.length);
   // Deep links: #<country> opens a country; ?site=<name> opens a site.
   if(location.hash)applyHash();
