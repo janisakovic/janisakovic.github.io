@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Greenfield ridge map | WindNext</title>
-<meta name="description" content="19,965 windy hill and ridge sites within 1 km of a road and with no wind farm, in 31 countries and regions. Pick a country and see the untapped potential for WindNext turbine clusters.">
+<meta name="description" content="26,400 windy hill and ridge sites within 1 km of a road and with no wind farm, in 32 countries and regions. Pick a country and see the untapped potential for WindNext turbine clusters.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../assets/windnext-logo-stacked.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -538,12 +538,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <div class="maphero__row">
       <div>
         <h1 id="h1">Good wind. No wind farm. <span class="accent">Yet.</span></h1>
-        <p class="lead">Our modelling found 19,965 windy ridges within 1 km of a road, with no wind farm on them: often too steep or too sensitive for tall turbines. Pick a country to see what WindNext turbine clusters could unlock there.</p>
+        <p class="lead">Our modelling found 26,400 windy ridges within 1 km of a road, with no wind farm on them: often too steep or too sensitive for tall turbines. Pick a country to see what WindNext turbine clusters could unlock there.</p>
       </div>
       <ul class="mapstats" aria-label="Map summary">
-        <li><b id="st-sites">19,965</b><span>windy ridges within 1 km of a road</span></li>
-        <li><b id="st-ctry">31</b><span>countries and regions</span></li>
-        <li><b id="st-twh"><small>about</small> 2,508 TWh</b><span>a year, technical maximum</span></li>
+        <li><b id="st-sites">26,400</b><span>windy ridges within 1 km of a road</span></li>
+        <li><b id="st-ctry">32</b><span>countries and regions</span></li>
+        <li><b id="st-twh"><small>about</small> 3,191 TWh</b><span>a year, technical maximum</span></li>
       </ul>
     </div>
   </div>
@@ -632,7 +632,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 
 <script src="../assets/vendor/leaflet/leaflet.js"></script>
 <script src="../assets/vendor/markercluster/leaflet.markercluster.js"></script>
-<script src="greenfield_map_sites.js?v=20261113"></script>
+<script src="greenfield_map_sites.js?v=20261113c"></script>
 <script>
 (function(){
   var h=document.querySelector('.site-header');
@@ -731,7 +731,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   function okG(i){return GS===Infinity||(S[i][9]!=null&&S[i][9]<=GS);}
   function show(list){cancelFly();lastList=list;var ids=list;if(GS!==Infinity)ids=(list||S.map(function(_,i){return i;})).filter(okG);
     cluster.clearLayers();cluster.addLayers(ids?ids.map(function(i){return markers[i];}):markers);setCount(ids?ids.length:S.length);
-    if(GS!==Infinity){var m=0;ids.forEach(function(i){m+=S[i][3]||0;});count.innerHTML+=' up to '+String(GS)+' m/s · about '+twh(m)+' TWh a year';}}
+    if(GS!==Infinity){var m=0;ids.forEach(function(i){m+=S[i][3]||0;});count.innerHTML+=' up to '+String(GS)+' m/s · about '+twh(m)+' TWh a year';var na=(list||S.map(function(_,i){return i;})).filter(function(i){return S[i][9]==null;}).length;if(na)count.innerHTML+=' · '+fmt.format(na)+(na===1?' has':' have')+' no gust value yet';}}
   function fitC(k){var b=L.latLngBounds(C[k].idx.map(function(i){return [S[i][6],S[i][7]];}));map.fitBounds(b,{padding:[30,30],maxZoom:8});}
   function showCountry(k){unsel();curC=k;clearSearch();show(C[k].idx);fitC(k);renderCountry(k);view('country');document.title=k+' · Greenfield ridge map | WindNext';}
   function showAll(){unsel();curC=null;clearSearch();show(null);home();view('list');document.title=TITLE;}
