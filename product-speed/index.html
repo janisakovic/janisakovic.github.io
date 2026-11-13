@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Design gust and market reach | WindNext</title>
-<meta name="description" content="How many hill and ridge sites in the EU, the UK and Norway a WindNext design rated for a given 50-year gust could serve.">
+<meta name="description" content="How many hill and ridge sites in Europe, Asia, Australia and New Zealand, South America, Africa and British Columbia a WindNext design rated for a given 50-year gust could serve.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../assets/windnext-logo-stacked.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css">
 <!--
   Product speed page (Researcher, 12 Nov 2026). Unlinked page at /product-speed/ (Jan, 12 Nov): what each supported design gust unlocks,
-  EU+UK and Norway. Not linked from any other page or the sitemap. Styling copied from /greenfield/.
+  13 Nov: all finished countries (not Iran, not the US yet), continent check-boxes, opens on Europe. Not linked from any other page or the sitemap. Styling copied from /greenfield/.
   Data: product_speed_sites.js (public fields only: name, country, coordinates, rotors, MWh/yr, 50-yr gust, snow, gust source, protected flag)
   and product_speed_land.js (country outlines, shown under the base map and when tiles cannot load). Loaded with <script> so the page works from disk.
 -->
@@ -532,6 +532,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .snow b{font-variant-numeric:tabular-nums;color:var(--navy);min-width:48px;display:inline-block}
 .chk{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;min-height:42px;cursor:pointer}
 .chk input{width:20px;height:20px;accent-color:var(--navy)}
+.conts{flex-basis:100%}.conts__row{display:flex;flex-wrap:wrap;gap:4px 22px}.conts__row .chk{min-height:36px}.conts__row .chk i{width:12px;height:12px;border-radius:3px;display:inline-block}.conts__row .chk.dis{opacity:.45;cursor:default}
 .legend .sw--on{width:14px;height:14px;background:var(--green)}
 .legend .sw--off{width:12px;height:12px;background:#C9CFE6;border-color:#9AA2BC}
 .legend .sw--na{width:12px;height:12px;background:#fff;border:2px dashed #7A829E}
@@ -580,11 +581,11 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 <main id="main">
 <section class="maphero" aria-labelledby="h1">
   <div class="container">
-    <div class="eyebrow">Design gust · EU, UK and Norway</div>
+    <div class="eyebrow">Design gust · Europe and worldwide</div>
     <div class="maphero__row">
       <div>
         <h1 id="h1">Explore the market unlocked by <span class="accent">supported m/s</span></h1>
-        <p class="lead">Move the design gust and see which hill and ridge sites a WindNext design rated for that 50-year gust could serve, and how much energy they hold. Switch between new ridges and add-ons at existing wind farms.</p>
+        <p class="lead">Move the design gust and see which hill and ridge sites on each continent a WindNext design rated for that 50-year gust could serve, and how much energy they hold. Switch between new ridges and add-ons at existing wind farms.</p>
       </div>
       <ul class="mapstats" aria-label="At the selected design gust" aria-live="polite">
         <li><b id="st-twh">–</b><span id="st-twh-l">TWh a year within the limit</span></li>
@@ -613,13 +614,16 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
       <div class="ctl__g" id="protG"><span>Protected areas</span>
         <label class="chk"><input id="prot" type="checkbox"> Include protected sites</label>
       </div>
+      <div class="ctl__g conts"><span>Continents</span>
+        <div class="conts__row" id="conts" role="group" aria-label="Continents"></div>
+      </div>
     </div>
     <div class="toolbar">
       <p class="count" id="count" aria-live="polite">Loading sites…</p>
       <ul class="legend" aria-label="Legend"><li><span class="sw sw--on"></span>Within the limit</li><li><span class="sw sw--off"></span>Over the limit</li><li><span class="sw sw--na"></span>No gust value yet</li><li>Size: energy per year</li></ul>
     </div>
     <div class="mapwrap">
-      <div id="wn-map" role="region" aria-label="Map of sites in the EU, the UK and Norway. Green sites are within the selected design gust, grey sites are over it. The panel next to the map has the same numbers as text."></div>
+      <div id="wn-map" role="region" aria-label="Map of sites on the continents you select. Green sites are within the selected design gust, grey sites are over it. The panel next to the map has the same numbers as text."></div>
       <aside class="panel" aria-label="What this design gust unlocks">
         <div class="panel__in">
           <div class="kp" aria-live="polite">
@@ -631,7 +635,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
             <p id="cNote"></p>
             <svg id="cv" viewBox="0 0 344 240" role="img" aria-label="Cumulative energy within the limit against design gust, stacked by region"></svg>
             <div class="readout" id="ro" aria-live="polite">Hover or tap the chart to read a value; click to set the gust.</div>
-            <ul class="clegend"><li><i style="background:#283583"></i>EU and UK</li><li><i style="background:#78B22B"></i>Norway</li><li><i class="dash"></i>Total without snow factor</li></ul>
+            <ul class="clegend" id="clg"></ul>
           </div>
           <div>
             <h3 style="font-size:17px;margin:4px 0 8px">At the IEC class limits</h3>
@@ -656,7 +660,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
     </div>
     <div class="below">
       <div class="note-caveat" role="note">
-        <p><strong>About these numbers.</strong> Gust values use the national wind code where we have assessed it. Elsewhere they are estimates from ERA5 yearly maxima (2015–2024), scaled to code values; for existing wind farms the estimate is calibrated against the wind farms already standing. Protected sites are those inside Natura 2000 or an OpenStreetMap national park or nature reserve. Energy is the modelled gross WindNext potential per site, a technical maximum before wake, availability and electrical losses, with an uncertainty of roughly ±25–30%. It is not a build plan or a commitment.</p>
+        <p><strong>About these numbers.</strong> Gust values use the national wind code where we have assessed it. Elsewhere they are estimates from ERA5 yearly maxima (2015–2024), scaled to code values; for existing wind farms the estimate is calibrated against the wind farms already standing. Protected sites are those inside Natura 2000 (EU) or an OpenStreetMap national park or nature reserve; in Inner Mongolia protection has not been checked yet. In tropical-cyclone areas (northern Australia, the Philippines) the estimates can be too low. Energy is the modelled gross WindNext potential per site, a technical maximum before wake, availability and electrical losses, with an uncertainty of roughly ±25–30%. It is not a build plan or a commitment.</p>
         <p>Base map © <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Estimates use Copernicus DEM, ERA5 (Copernicus Climate Change Service), Global Wind Atlas, Natura 2000 (EEA) and OpenStreetMap/Overture data; see <a href="../licenses.html">licences and credits</a> and <a href="../terms.html">terms of use</a>. Data as of <span id="upd">12 November 2026</span>.</p>
       </div>
       <div class="notshown">
@@ -688,8 +692,8 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 </footer>
 
 <script src="../assets/vendor/leaflet/leaflet.js"></script>
-<script src="product_speed_land.js"></script>
-<script src="product_speed_sites.js"></script>
+<script src="product_speed_land.js?v=20261113"></script>
+<script src="product_speed_sites.js?v=20261113"></script>
 <script>
 (function(){
   var h=document.querySelector('.site-header');
@@ -704,22 +708,22 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   var count=$('count');
   if(!window.L||!window.WN_SPEED){count.textContent='The site data or the map library could not load. Please reload the page.';return;}
   // [type, name, country, region, lat, lon, rotors, mwh, gust, snow, src, protected]
-  var S=window.WN_SPEED.sites, REG=['EU and UK','Norway'], COL=['#283583','#78B22B'];
+  var S=window.WN_SPEED.sites, REG=['Europe','Asia','Australia and NZ','South America','Africa','North America'], COL=['#283583','#E07B39','#78B22B','#3FA7D6','#A05195','#C9A227'], NC=6;
   var fmt=new Intl.NumberFormat('en-GB'), f1=new Intl.NumberFormat('en-GB',{minimumFractionDigits:1,maximumFractionDigits:1});
   function twh(m){var t=m/1e6;return t>=99.5?fmt.format(Math.round(t)):f1.format(t);}
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  var st={mode:0,lim:72,f:1.15,prot:false};
+  var st={mode:0,lim:72,f:1.15,prot:false,on:[true,false,false,false,false,false]};
   // Map
-  var BOUNDS=L.latLngBounds([33,-26],[72,36]);
-  var map=L.map('wn-map',{maxBounds:BOUNDS.pad(.3),maxBoundsViscosity:1,minZoom:2,maxZoom:13,zoomSnap:.5,preferCanvas:true});
+  var WORLD=L.latLngBounds([-58,-180],[78,180]), EUR=[[36,-10],[71,30]];
+  var map=L.map('wn-map',{maxBounds:[[-85,-240],[85,240]],maxBoundsViscosity:1,minZoom:1,maxZoom:13,zoomSnap:.5,preferCanvas:true,worldCopyJump:false});
   map.createPane('land');map.getPane('land').style.zIndex=150;
   L.geoJSON(window.WN_LAND||{type:'FeatureCollection',features:[]},{pane:'land',interactive:false,style:{color:'#B9C1D9',weight:.6,fillColor:'#F7F8FB',fillOpacity:1}}).addTo(map);
   // MapTiler "Landscape" raster tiles, as on /greenfield/. The key only works on windnext.energy; the outlines underneath show elsewhere.
   var MAPTILER_KEY='A5tAEC2vScsq6ZtAX12B',MAPTILER_STYLE='landscape';
-  var tiles=L.tileLayer('https://api.maptiler.com/maps/'+MAPTILER_STYLE+'/{z}/{x}/{y}{r}.png?key='+MAPTILER_KEY,{tileSize:512,zoomOffset:-1,minZoom:0,minNativeZoom:1,maxZoom:19,bounds:BOUNDS.pad(.3),
+  var tiles=L.tileLayer('https://api.maptiler.com/maps/'+MAPTILER_STYLE+'/{z}/{x}/{y}{r}.png?key='+MAPTILER_KEY,{tileSize:512,zoomOffset:-1,minZoom:0,minNativeZoom:1,maxZoom:19,noWrap:true,
     attribution:'&copy; <a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
   map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-  map.fitBounds([[36,-10],[71,30]]);
+  map.fitBounds(EUR);
   var renderer=L.canvas({padding:.5,tolerance:4});
   var mx=[0,0];S.forEach(function(s){if(s[7]>mx[s[0]])mx[s[0]]=s[7];});
   function rad(s){return 2.5+9*Math.sqrt(s[7]/mx[s[0]]);}
@@ -728,23 +732,28 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
     return '<b dir="auto">'+esc(s[1])+'</b><br>'+esc(s[2])+'<br>'+fmt.format(s[7])+' MWh/yr · '+fmt.format(s[6])+' rotors<br>'+
       (s[8]==null?'No gust value yet':'50-year gust '+f1.format(s[8])+' m/s'+(s[9]?' · snowy, ×'+st.f.toFixed(2)+' = '+f1.format(g):'')+' ('+(s[10]==='c'?'national code':'estimate')+')')+
       (s[11]?'<br>Protected area':'');}
-  var groups=[L.layerGroup(),L.layerGroup()], mk=[];
+  var groups=[[],[]], mk=[], CNT=[[0,0,0,0,0,0],[0,0,0,0,0,0]], BB=[[],[]];
+  for(var gi=0;gi<2;gi++)for(var ci=0;ci<NC;ci++){groups[gi].push(L.layerGroup());BB[gi].push(null);}
   S.map(function(s,i){return i;}).sort(function(a,b){return S[b][7]-S[a][7];}).forEach(function(i){
     var s=S[i],m=L.circleMarker([s[4],s[5]],{renderer:renderer,radius:rad(s),weight:1});m._i=i;m.bindTooltip(tip,{direction:'top',offset:[0,-4]});
-    groups[s[0]].addLayer(m);mk.push(m);});
+    groups[s[0]][s[3]].addLayer(m);mk.push(m);CNT[s[0]][s[3]]++;
+    var b=BB[s[0]][s[3]];if(!b)BB[s[0]][s[3]]=L.latLngBounds([s[4],s[5]],[s[4],s[5]]);else b.extend([s[4],s[5]]);});
+  var cb=$('conts');cb.innerHTML=REG.map(function(r,i){return '<label class="chk"><input type="checkbox" data-c="'+i+'"'+(st.on[i]?' checked':'')+'><i style="background:'+COL[i]+'"></i>'+r+'</label>';}).join('');
+  function fitSel(){var b=null;for(var i=0;i<NC;i++){if(!st.on[i])continue;var x=BB[st.mode][i];if(x){b=b?b.extend(x):L.latLngBounds(x.getSouthWest(),x.getNorthEast());}}
+    if(st.on[0]&&st.on.filter(Boolean).length===1){map.fitBounds(EUR);return;} if(b)map.fitBounds(b.pad(.08),{maxZoom:7});}
   var STY={on:{color:'#141B47',weight:1,fillColor:'#78B22B',fillOpacity:.92,opacity:1,dashArray:null},
            off:{color:'#9AA2BC',weight:.75,fillColor:'#C9CFE6',fillOpacity:.75,opacity:1,dashArray:null},
            na:{color:'#7A829E',weight:1.25,fillColor:'#fff',fillOpacity:.6,opacity:1,dashArray:'2 2'},
            hid:{opacity:0,fillOpacity:0}};
   // Chart
   var X0=40,X1=120,STEP=.5,NX=(X1-X0)/STEP+1;
-  function cum(list,useSnow){var a=[new Float64Array(NX),new Float64Array(NX)];
+  function cum(list,useSnow){var a=[];for(var r0=0;r0<NC;r0++)a.push(new Float64Array(NX));
     list.forEach(function(s){var g=useSnow?dg(s):s[8];var k=Math.ceil((g-X0)/STEP-1e-9);if(k<0)k=0;if(k<NX)a[s[3]][k]+=s[7];});
-    for(var r=0;r<2;r++)for(var k=1;k<NX;k++)a[r][k]+=a[r][k-1];return a;}
+    for(var r=0;r<NC;r++)for(var k=1;k<NX;k++)a[r][k]+=a[r][k-1];return a;}
   var cv=$('cv'),W=344,H=240,PL=40,PR=10,PT=24,PB=30,CUR=null;
   function xs(x){return PL+(x-X0)/(X1-X0)*(W-PL-PR);}
   function niceMax(v){if(v<=0)return 1;var p=Math.pow(10,Math.floor(Math.log10(v))),n=v/p;return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p;}
-  function drawChart(c,ns){var tot=c[0].map(function(v,k){return v+c[1][k];}),ymax=niceMax(Math.max(tot[NX-1],ns[NX-1])/1e6*1.04);
+  function drawChart(c,ns){var tot=new Float64Array(NX);c.forEach(function(a){for(var k=0;k<NX;k++)tot[k]+=a[k];});var ymax=niceMax(Math.max(tot[NX-1],ns[NX-1])/1e6*1.04);
     function ys(v){return PT+(1-v/1e6/ymax)*(H-PT-PB);}
     function path(lo,hi){var d='M'+xs(X0)+','+ys(lo[0]);var k;
       for(k=0;k<NX;k++){var x=xs(X0+k*STEP),xn=xs(Math.min(X1,X0+(k+1)*STEP));d+='L'+x+','+ys(hi[k])+'L'+xn+','+ys(hi[k]);}
@@ -754,9 +763,9 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
     [40,60,80,100,120].forEach(function(x){o+='<text class="ax" x="'+xs(x)+'" y="'+(H-PB+16)+'" text-anchor="middle">'+x+'</text>';});
     o+='<text class="ax" x="'+(W-PR)+'" y="'+(H-2)+'" text-anchor="end">m/s</text><text class="ax" x="2" y="10">TWh/yr</text>';
     [52.5,59.5,70].forEach(function(x,i){o+='<line x1="'+xs(x)+'" x2="'+xs(x)+'" y1="'+PT+'" y2="'+(H-PB)+'" stroke="#C9CFE6" stroke-dasharray="2 3"/><text class="ax" x="'+(xs(x)+3)+'" y="'+(PT+10)+'" style="font-size:10px">'+['III','II','I'][i]+'</text>';});
-    o+='<path d="'+path(zero,c[0])+'" fill="'+COL[0]+'"/>';
-    var top=c[0].map(function(v,k){return v+c[1][k];});
-    o+='<path d="'+path(c[0],top)+'" fill="'+COL[1]+'"/>';
+    var lo=zero,top=zero;
+    for(var r=0;r<NC;r++){if(!c[r][NX-1])continue;top=new Float64Array(NX);for(var k2=0;k2<NX;k2++)top[k2]=lo[k2]+c[r][k2];
+      o+='<path d="'+path(lo,top)+'" fill="'+COL[r]+'" stroke="#fff" stroke-width="1"/>';lo=top;}
     var dl='';for(var k=0;k<NX;k++){dl+=(k?'L':'M')+xs(X0+k*STEP)+','+ys(ns[k])+'L'+xs(Math.min(X1,X0+(k+1)*STEP))+','+ys(ns[k]);}
     o+='<path d="'+dl+'" fill="none" stroke="#7A829E" stroke-width="1.5" stroke-dasharray="4 3"/>';
     o+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+(H-PB)+'" y2="'+(H-PB)+'" stroke="#5B6275"/>';
@@ -766,7 +775,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   function idx(x){return Math.max(0,Math.min(NX-1,Math.round((x-X0)/STEP)));}
   function xFromEvt(e){var r=cv.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*W;var x=X0+(px-PL)/(W-PL-PR)*(X1-X0);return Math.max(X0,Math.min(X1,Math.round(x/STEP)*STEP));}
   cv.addEventListener('pointermove',function(e){if(!CUR)return;var x=xFromEvt(e),k=idx(x),hv=$('hv');hv.setAttribute('x1',xs(x));hv.setAttribute('x2',xs(x));hv.setAttribute('visibility','visible');
-    $('ro').innerHTML='<b>'+f1.format(x)+' m/s</b>: '+twh(CUR.top[k])+' TWh/yr · EU and UK '+twh(CUR.c[0][k])+' · Norway '+twh(CUR.c[1][k]);});
+    $('ro').innerHTML='<b>'+f1.format(x)+' m/s</b>: '+twh(CUR.top[k])+' TWh/yr'+(LIVE.length>1?LIVE.map(function(r){return ' · '+REG[r]+' '+twh(CUR.c[r][k]);}).join(''):'');});
   cv.addEventListener('pointerleave',function(){var hv=$('hv');if(hv)hv.setAttribute('visibility','hidden');});
   cv.addEventListener('click',function(e){setLim(xFromEvt(e));});
   // Render
@@ -779,24 +788,29 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
     $('mGF').setAttribute('aria-pressed',md===0);$('mEX').setAttribute('aria-pressed',md===1);$('protG').style.visibility=md===0?'visible':'hidden';
     [].forEach.call(document.querySelectorAll('#presets button'),function(b){b.classList.toggle('on',+b.dataset.v===st.lim);});
     var base=[],withG=[],on=0,onM=0,onR=0,tot=0,totG=0;
-    S.forEach(function(s){if(s[0]!==md||(s[11]&&!inclP))return;base.push(s);tot+=s[7];if(s[8]!=null){withG.push(s);totG+=s[7];if(dg(s)<=st.lim+1e-9){on++;onM+=s[7];onR+=s[6];}}});
-    mk.forEach(function(m){var s=S[m._i];if(s[0]!==md)return;m.setStyle(s[11]&&!inclP?STY.hid:s[8]==null?STY.na:dg(s)<=st.lim+1e-9?STY.on:STY.off);});
-    if(!map.hasLayer(groups[md])){map.removeLayer(groups[1-md]);map.addLayer(groups[md]);}
+    S.forEach(function(s){if(s[0]!==md||!st.on[s[3]]||(s[11]&&!inclP))return;base.push(s);tot+=s[7];if(s[8]!=null){withG.push(s);totG+=s[7];if(dg(s)<=st.lim+1e-9){on++;onM+=s[7];onR+=s[6];}}});
+    mk.forEach(function(m){var s=S[m._i];if(s[0]!==md||!st.on[s[3]])return;m.setStyle(s[11]&&!inclP?STY.hid:s[8]==null?STY.na:dg(s)<=st.lim+1e-9?STY.on:STY.off);});
+    for(var gi=0;gi<2;gi++)for(var ci=0;ci<NC;ci++){var want=gi===md&&st.on[ci],L1=groups[gi][ci];if(want&&!map.hasLayer(L1))map.addLayer(L1);else if(!want&&map.hasLayer(L1))map.removeLayer(L1);}
+    [].forEach.call(cb.querySelectorAll('label'),function(l,i){var n=CNT[md][i];l.classList.toggle('dis',!n);l.title=n?fmt.format(n)+(md===0?' ridges':' wind farms'):'No '+(md===0?'ridges':'wind farms')+' here yet';});
     var what=md===0?'new ridges':'existing wind farms';
     $('st-twh').textContent=twh(onM);$('st-sites').textContent=fmt.format(on);$('st-pct').textContent=totG?Math.round(100*onM/totG)+'%':'–';
     $('st-sites-l').textContent=what+' within the limit';
     $('kT').textContent=twh(onM);$('kR').textContent=fmt.format(onR);
     count.innerHTML='<b>'+fmt.format(on)+'</b> of '+fmt.format(withG.length)+' '+what+' with a gust value are within '+f1.format(st.lim).replace(/\.0$/,'')+' m/s'+(base.length>withG.length?' · '+fmt.format(base.length-withG.length)+' have no gust value yet':'')+(md===0?(inclP?' · protected sites included':' · protected sites left out'):'');
-    var c=cum(withG,true),ns=cum(withG,false),nsT=ns[0].map(function(v,k){return v+ns[1][k];});
+    var c=cum(withG,true),ns=cum(withG,false),nsT=new Float64Array(NX);ns.forEach(function(a){for(var k=0;k<NX;k++)nsT[k]+=a[k];});
+    LIVE=[];for(var r=0;r<NC;r++)if(c[r][NX-1])LIVE.push(r);
+    $('clg').innerHTML=LIVE.map(function(r){return '<li><i style="background:'+COL[r]+'"></i>'+REG[r]+'</li>';}).join('')+'<li><i class="dash"></i>Total without snow factor</li>';
     drawChart(c,nsT);
     var k90=-1,T=CUR.top[NX-1];for(var k=0;k<NX;k++){if(CUR.top[k]>=.9*T){k90=k;break;}}
     $('cNote').textContent=twh(CUR.top[idx(st.lim)])+' TWh/yr at '+f1.format(st.lim).replace(/\.0$/,'')+' m/s. 90% of the assessed total is reached at '+(k90<0?'–':f1.format(X0+k90*STEP).replace(/\.0$/,''))+' m/s.';
     var rows=[['IEC III',52.5],['IEC II',59.5],['IEC I',70],['72 m/s',72],['Design (72.6 m/s 10-min)',101.5]],have=rows.some(function(r){return r[1]===st.lim;});
     if(!have)rows.push(['Selected',st.lim]);rows.sort(function(a,b){return a[1]-b[1];});
     function nAt(x){var n=0;withG.forEach(function(s){if(dg(s)<=x+1e-9)n++;});return n;}
-    $('tbl').innerHTML='<tr><th>Gust</th><th>EU and UK</th><th>Norway</th><th>Total TWh</th><th>Sites</th></tr>'+rows.map(function(r){var k=idx(r[1]);
-      return '<tr'+(r[1]===st.lim?' class="cur"':'')+'><td><button type="button" data-v="'+r[1]+'">'+r[0]+'</button><small>'+f1.format(r[1]).replace(/\.0$/,'')+' m/s</small></td><td>'+twh(CUR.c[0][k])+'</td><td>'+twh(CUR.c[1][k])+'</td><td><b>'+twh(CUR.top[k])+'</b></td><td>'+fmt.format(nAt(r[1]))+'</td></tr>';}).join('');
+    $('tbl').innerHTML='<tr><th>Gust</th><th>Total TWh</th><th>Sites</th></tr>'+rows.map(function(r){var k=idx(r[1]);
+      return '<tr'+(r[1]===st.lim?' class="cur"':'')+'><td><button type="button" data-v="'+r[1]+'">'+r[0]+'</button><small>'+f1.format(r[1]).replace(/\.0$/,'')+' m/s</small></td><td><b>'+twh(CUR.top[k])+'</b></td><td>'+fmt.format(nAt(r[1]))+'</td></tr>';}).join('');
   }
+  var LIVE=[];
+  cb.addEventListener('change',function(e){var i=+e.target.dataset.c;if(isNaN(i))return;st.on[i]=e.target.checked;render();fitSel();});
   var tmr;function schedule(){clearTimeout(tmr);tmr=setTimeout(render,40);}
   gust.addEventListener('input',function(){st.lim=+gust.value;schedule();});
   snow.addEventListener('input',function(){st.f=+snow.value;schedule();});
