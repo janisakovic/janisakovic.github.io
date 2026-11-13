@@ -531,7 +531,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
           <h2>Select a wind farm</h2>
           <p>Click a green dot or a numbered cluster, or search for your farm by name or country. Each farm shows the modelled potential: the additional energy WindNext turbine clusters could add on its ridge.</p>
           <ul class="legend" aria-label="Legend"><li><span class="sw" style="width:12px;height:12px;background:#A9D16A"></span>Under 10,000 MWh/yr</li><li><span class="sw" style="width:18px;height:18px;background:#78B22B"></span>10,000–50,000</li><li><span class="sw" style="width:26px;height:26px;background:#4E7A16"></span>Over 50,000</li><li><span class="sw sw--cl">5</span>Group of farms</li></ul>
-          <p class="caveat">Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.</p>
+          <p class="caveat">Modelled potential. <a href="index.html#contact">Your site check</a> gives the real figure.</p>
         </div>
         <div class="panel__in" id="panel-site" hidden></div>
       </aside>
@@ -545,7 +545,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
       <div class="notshown">
         <h3>Your wind farm isn't on the map?</h3>
         <p>The map shows a selection of hill and ridge wind farms across Europe, Türkiye and Morocco, not every site we can assess. If you operate a farm that isn't shown, ask us for a site check.</p>
-        <a class="btn btn--primary" href="index.html#contact">Ask for a site check <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--primary" href="index.html#contact">Request a site check <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
@@ -585,7 +585,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 (function(){
   var ICON={arrow:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',pin:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5a7 7 0 0 1 14 0C19 14.7 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',ridge:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19 9 9l4 5 3-3 6 8z"/><path d="M2 21h20"/></svg>',bolt:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2 4 13h6l-1 9 7-11h-6z"/><path d="M19 3v5M16.5 5.5h5"/></svg>',person:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c1-4.5 4.2-6.5 8-6.5s7 2 8 6.5"/></svg>'};
   var HH=3.6; // MWh per household per year (EU average per dwelling, ODYSSEE-MURE)
-  var CAVEAT="Modelled potential: a gross estimate from our modelling, using public wind and terrain data, before wake, availability and electrical losses; actual yield depends on micro-siting, wake effects, grid capacity and permitting. Uncertainty is roughly ±25-30%. Some estimates, mainly for recently added farms, use a simplified (clipped) wind calibration and are preliminary, so treat them with extra caution. Not a commitment.";
+  var CAVEAT='Modelled potential. <a href="index.html#contact">Your site check</a> gives the real figure.';
   var D=window.WINDNEXT_MAP, S=D.sites; // [label,country,operator,mwh,rotors,section,lat,lon,unnamed]
   var fmt=new Intl.NumberFormat('en-GB');
   var BOUNDS=L.latLngBounds([27,-32],[72,45]);
@@ -623,7 +623,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     if(s[8]) h+='<p class="sub">Name not published in the source data; labelled by region.</p>';
     h+='<dl class="meta"><dt>Country</dt><dd>'+esc(s[1])+'</dd>'+(s[2]?'<dt>Operator</dt><dd>'+esc(s[2])+'</dd>':'')+'</dl>';
     if(pend){h+='<div class="stat"><div class="k">Potential additional energy</div><div class="v v--pending">Estimate pending</div><p>We have not screened this farm yet. Request a site check and we will prepare its estimate.</p></div>';}
-    else{h+='<div class="stat"><div class="k">Modelled potential, additional energy</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Indicative, ±25-30%. Gross, before wake, availability and electrical losses.</p></div>';}
+    else{h+='<div class="stat"><div class="k">Modelled potential, additional energy</div><div class="v">'+fmt.format(s[3])+'<span class="u">MWh/year</span></div><p>Modelled potential.</p></div>';}
     var f='';
     if(s[4]) f+='<li>'+ICON.ridge+'<span><b>'+fmt.format(s[4])+'</b> WindNext rotors along the crest (indicative layout)</span></li>';
     if(!pend && s[5]!=='notable_unscaled_only'){var hh=s[3]/HH,r=hh>=1000?Math.round(hh/100)*100:Math.round(hh/10)*10;
@@ -631,7 +631,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     if(f) h+='<ul class="facts">'+f+'</ul>';
     if(s[5]==='notable_unscaled_only') h+='<p class="prelim"><b>Preliminary value.</b> This estimate has not been through the same calibration as most sites on the map, so treat it with extra caution.</p>';
     h+='<div class="cta-wrap"><a class="btn btn--primary" href="'+ctaHref(s)+'">Request a site check for this farm '+ICON.arrow+'</a></div>';
-    h+='<p class="caveat">'+esc(CAVEAT)+'</p>';
+    h+='<p class="caveat">'+CAVEAT+'</p>';
     ps.innerHTML=h;
   }
   function openPanel(){pe.hidden=true;ps.hidden=false;panel.classList.add('open');}
