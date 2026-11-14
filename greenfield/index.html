@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>New sites map | WindNext</title>
-<meta name="description" content="29,411 windy ridges with a road nearby and no wind farm, in 35 countries and regions. Pick a country and see what WindNext turbine clusters could produce there.">
+<meta name="description" content="30,215 windy ridges with a road nearby and no wind farm, in 37 countries and regions. Pick a country and see what WindNext turbine clusters could produce there.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../assets/windnext-logo-stacked.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -538,12 +538,12 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
     <div class="maphero__row">
       <div>
         <h1 id="h1">Good wind. No wind farm. <span class="accent">Yet.</span></h1>
-        <p class="lead">Our modelling found 29,411 windy ridges with a road within 1 km and no wind farm on them. Pick a country to see what WindNext turbine clusters could produce there.</p>
+        <p class="lead">Our modelling found 30,215 windy ridges with a road within 1 km and no wind farm on them. Pick a country to see what WindNext turbine clusters could produce there.</p>
       </div>
       <ul class="mapstats" aria-label="Map summary">
-        <li><b id="st-sites">29,411</b><span>windy ridges</span></li>
-        <li><b id="st-ctry">35</b><span>countries and regions</span></li>
-        <li><b id="st-twh"><small>over</small> 3,500 TWh</b><span>a year, technical maximum</span></li>
+        <li><b id="st-sites">30,215</b><span>windy ridges</span></li>
+        <li><b id="st-ctry">37</b><span>countries and regions</span></li>
+        <li><b id="st-twh"><small>over</small> 3,600 TWh</b><span>a year, technical maximum</span></li>
       </ul>
     </div>
   </div>
@@ -632,7 +632,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 
 <script src="../assets/vendor/leaflet/leaflet.js"></script>
 <script src="../assets/vendor/markercluster/leaflet.markercluster.js"></script>
-<script src="greenfield_map_sites.js?v=20261114"></script>
+<script src="greenfield_map_sites.js?v=20261114b"></script>
 <script>
 (function(){
   var h=document.querySelector('.site-header');
@@ -652,7 +652,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   function isPre(s){return /preliminary/.test(s[5]);}
   // Countries (WC-036): Europe first, then Rest of the world; largest potential first; countries under 20 ridges grouped.
   var EUROPE=['Norway','Türkiye','Spain','France','Austria','Greece','Croatia','United Kingdom','Ireland','Bulgaria','Slovenia','Sweden','Czechia','Germany','Portugal','Italy','Finland','Poland','Slovakia','Romania','Hungary'];
-  var REGION=['Canada (British Columbia)','China (Inner Mongolia)'],OTHER='Other analysed countries',MINR=20;
+  var REGION=['Canada (British Columbia)','Canada (Alberta)','China (Inner Mongolia)'],OTHER='Other analysed countries',MINR=20;
   function slug(t){return t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
   var byC={};S.forEach(function(s,i){(byC[s[1]]=byC[s[1]]||[]).push(i);});
   var C={},ORDER=[];
@@ -661,7 +661,7 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
   if(small.length){small.sort();var oi=[];small.forEach(function(k){oi=oi.concat(byC[k]);});oi.sort(function(a,b){return a-b;});addC(OTHER,oi,small);}
   var cOf=S.map(function(s){return C[s[1]]?s[1]:OTHER;});
   var bySlug={};Object.keys(C).forEach(function(k){bySlug[C[k].slug]=k;});
-  var ALIAS={'turkey':'Türkiye','british-columbia':'Canada (British Columbia)','inner-mongolia':'China (Inner Mongolia)','other':OTHER};
+  var ALIAS={'turkey':'Türkiye','british-columbia':'Canada (British Columbia)','alberta':'Canada (Alberta)','inner-mongolia':'China (Inner Mongolia)','other':OTHER};
   Object.keys(ALIAS).forEach(function(a){if(C[ALIAS[a]])bySlug[a]=ALIAS[a];});
   function sorted(eu){return Object.keys(C).filter(function(k){return C[k].eu===eu;}).sort(function(a,b){if((a===OTHER)!==(b===OTHER))return a===OTHER?1:-1;return C[b].mwh-C[a].mwh;});}
   function joinAnd(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];}
